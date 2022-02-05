@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React , { useEffect, useState} from 'react';
+import ocean from './components/OceanClient'
+import { getOraclePrice, getDexPrice } from './commons/functions';
 
-function App() {
+const App = () => {
+
+  const [oraclePriceList, setOraclePriceList] = useState([])
+  const [dexPriceList, setDexPriceList] = useState([])
+ 
+  useEffect(()=> {const list = async () => { 
+              
+            const oraclePrices = await ocean.prices.list(90)
+            const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
+            setOraclePriceList(oraclePriceList)
+            console.log(oraclePriceList)
+
+            const dexPrices = await ocean.poolpairs.list(90)
+            const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba])
+            setDexPriceList(dexPriceList)
+            console.log(dexPriceList)               
+
+            }
+    list()
+
+  },[]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+    <div>
+      <h1>dstocks</h1>
+      <div>{getOraclePrice(oraclePriceList,"BTC")}</div>
+      <div>{getDexPrice(dexPriceList,"BTC")*getOraclePrice(oraclePriceList,"DFI")}</div>
     </div>
   );
 }
+
 
 export default App;
