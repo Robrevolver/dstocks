@@ -13,3 +13,7 @@ export function getDexPrice(listObj, symbol) {
         }
       }
     }    
+
+export function getPremium(listObj1, listObj2, symbol) {
+  return ((getDexPrice(listObj2,symbol)/getOraclePrice(listObj1,symbol)*100)-100).toFixed(1)
+}
