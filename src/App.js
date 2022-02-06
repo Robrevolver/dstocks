@@ -1,6 +1,9 @@
 import React , { useEffect, useState} from 'react';
 import ocean from './components/OceanClient'
 import { getOraclePrice, getDexPrice } from './commons/functions';
+import { dStocks } from './commons/dstocks'
+
+console.log(dStocks)
 
 const App = () => {
 
@@ -18,18 +21,24 @@ const App = () => {
             const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba])
             setDexPriceList(dexPriceList)
             console.log(dexPriceList)               
-
             }
     list()
 
   },[]);
 
+  const dStocksList = dStocks.map(dStock => (
+        <div> {`${dStock.symbol} ${dStock.name} 
+              ${getOraclePrice(oraclePriceList,dStock.symbol)} 
+              ${(getDexPrice(dexPriceList,dStock.symbol))}`}
+        </div>
+        ))
+
   return (
     
     <div>
-      <h1>dstocks</h1>
-      <div>{getOraclePrice(oraclePriceList,"BTC")}</div>
-      <div>{getDexPrice(dexPriceList,"BTC")*getOraclePrice(oraclePriceList,"DFI")}</div>
+      <h1>dStocks</h1>
+      <div></div>
+      <div>{dStocksList}</div>
     </div>
   );
 }
