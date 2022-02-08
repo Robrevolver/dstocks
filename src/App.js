@@ -39,7 +39,7 @@ const App = () => {
   return (
     
     <div className = "ui container">
-      <h1>dStocks</h1>
+      <h1>dStocks V 0.0.1</h1>
       <div></div>
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
                 .filter(item => item.ratio > 25).sort((a,b) => b.ratio - a.ratio)
