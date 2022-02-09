@@ -18,6 +18,8 @@ const App = () => {
 
             const dexPrices = await ocean.poolpairs.list(90)
             const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba, item.totalLiquidity.usd])
+            // const dexPriceList = dexPrices.map(item => [{symbol: item.tokenA.symbol, price: item.priceRatio.ba, tva: item.totalLiquidity.usd}])
+           
             setDexPriceList(dexPriceList)
             // console.log(dexPriceList)               
             }
@@ -31,13 +33,10 @@ const App = () => {
                                       name: dStock.name,
                                oraclePrice: getOraclePrice(oraclePriceList, dStock.symbol),
                                   dexPrice: getDexPrice(dexPriceList, dStock.symbol),
-                                     ratio: getPremium(oraclePriceList, dexPriceList, dStock.symbol),
-                                  })
-                          )
+                                     ratio: getPremium(oraclePriceList, dexPriceList, dStock.symbol)
+                                  }))                       
             return arr
   }
-
-  // const test = true
 
   return (
     
