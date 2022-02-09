@@ -7,6 +7,7 @@ const App = () => {
 
   const [oraclePriceList, setOraclePriceList] = useState([])
   const [dexPriceList, setDexPriceList] = useState([])
+  const [sortPremium, setPremiumSort] = useState([true])
  
   useEffect(()=> {const list = async () => { 
               
@@ -36,13 +37,16 @@ const App = () => {
             return arr
   }
 
+  // const test = true
+
   return (
     
     <div className = "ui container">
-      <h1>dStocks V 0.0.1</h1>
+      <h1>dStocks V 0.0.2</h1>
       <div></div>
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
-                .filter(item => item.ratio > 25).sort((a,b) => b.ratio - a.ratio)
+                .filter(item => item.ratio > 0)
+                .sort((a,b) => sortPremium ? b.ratio - a.ratio : a.ratio - b.ratio)
                 .map(dStock => 
                 <div key={dStock.name}>
                   {`${dStock.symbol} - ${dStock.name} - ${dStock.oraclePrice} - ${dStock.dexPrice} - ${dStock.ratio}`}
@@ -50,8 +54,9 @@ const App = () => {
                 )
         }
       </div>
+      <button onClick = {() => setPremiumSort(!sortPremium)}>sort</button>
     </div>
   );
 }
-
+// 
 export default App;
