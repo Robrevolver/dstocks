@@ -18,6 +18,7 @@ const App = () => {
             const dexPrices = await ocean.poolpairs.list(90)
             const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba, 
                                                         item.totalLiquidity.usd, item.apr.reward])
+
             setDexPriceList(dexPriceList)
                           
             }
@@ -36,10 +37,10 @@ const App = () => {
                                   })
                           )
             return arr
+  
   }
 
- return (
-
+  return (
     
     <div className = "ui container">
       <h1>dStocks V 0.0.2</h1>
