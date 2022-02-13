@@ -9,7 +9,8 @@ const App = () => {
   const [dexPriceList, setDexPriceList] = useState([])
   const [sortPremium, setPremiumSort] = useState([true])
   const [sortTvl, setTvlSort] = useState([true])
- 
+  const [sortOption, setSortOption] = useState(1)
+
   useEffect(()=> {const list = async () => { 
               
             const oraclePrices = await ocean.prices.list(90)
@@ -41,6 +42,14 @@ const App = () => {
   
   }
 
+  const premiumSort = () => {   
+    return (a,b) => sortPremium ? b.ratio - a.ratio : a.ratio - b.ratio
+  }
+
+  const tvlSort = () => {
+    return (a,b) => sortTvl ? b.tvl - a.tvl : a.tvl - b.tvl
+  }
+
   return (
     
     <div className = "ui container">
@@ -49,8 +58,7 @@ const App = () => {
 
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
                 .filter(item => item.ratio > 0)
-                .sort((a,b) => sortPremium ? b.ratio - a.ratio : a.ratio - b.ratio)
-                //.sort((a,b) => sortTvl ? b.tvl - a.tvl : a.tvl - b.tvl)
+                .sort(sortOption === 1 ? premiumSort() : tvlSort())
                 .map(dStock => 
                 <div key={dStock.name}>
                   {`${dStock.symbol} - ${dStock.name} - ${dStock.oraclePrice} - ${dStock.dexPrice} - ${dStock.ratio} - ${dStock.tvl}`}
@@ -59,7 +67,7 @@ const App = () => {
         }
       </div>
       <button onClick = {() => setPremiumSort(!sortPremium)}>sortPremium</button>
-      <button onClick = {() => setTvlSort(!sortTvl)}>sortTvl</button>
+      <button onClick = {() => setSortOption(2) && setTvlSort(!sortTvl)}>sortTvl</button>
     </div>
   );
 }
