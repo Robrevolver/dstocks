@@ -7,7 +7,7 @@ const App = () => {
 
   const [oraclePriceList, setOraclePriceList] = useState([])
   const [dexPriceList, setDexPriceList] = useState([])
-  const [sortPremium, setPremiumSort] = useState([true])
+  // const [sortPremium, setPremiumSort] = useState([true])
   const [sortTvl, setTvlSort] = useState([true])
   const [sortOption, setSortOption] = useState(1)
 
@@ -39,12 +39,15 @@ const App = () => {
                                   })
                           )
             return arr
-  
-  }
+          }
 
-  const premiumSort = () => {   
-    return (a,b) => sortPremium ? b.ratio - a.ratio : a.ratio - b.ratio
-  }
+  const premiumSort = (props) => {   
+   
+    console.log(props)
+ 
+    return (a,b) => a.ratio - b.ratio
+   
+ }
 
   const tvlSort = () => {
     return (a,b) => sortTvl ? b.tvl - a.tvl : a.tvl - b.tvl
@@ -66,7 +69,7 @@ const App = () => {
                 )
         }
       </div>
-      <button onClick = {() => setPremiumSort(!sortPremium)}>sortPremium</button>
+      <button value = {true} onClick = {() => setSortOption(1) }>sortPremium</button>
       <button onClick = {() => setSortOption(2) && setTvlSort(!sortTvl)}>sortTvl</button>
     </div>
   );
