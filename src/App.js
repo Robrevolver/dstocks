@@ -11,9 +11,10 @@ const ACTIONS = {
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.SORTPREMIUM:
-      return (a,b) => a.ratio - b.ratio
+      return "ratio"
     case ACTIONS.SORTTVL:
-      return (a,b) => a.tvl - b.tvl
+      return "tvl"
+    default:  
     }
   }
 
@@ -21,7 +22,7 @@ const App = () => {
 
   const [oraclePriceList, setOraclePriceList] = useState([])
   const [dexPriceList, setDexPriceList] = useState([])
-  const [state, dispatch] = useReducer(reducer, [])
+  const [state, dispatch] = useReducer(reducer,[])
 
   
   useEffect(()=> {const list = async () => { 
@@ -58,10 +59,10 @@ const App = () => {
     <div className = "ui container">
       <h1>dStocks V 0.0.2</h1>
       <div></div>
-
+      {console.log(state)}
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
                 .filter(item => item.ratio > 0)
-                .sort()
+                .sort((a,b) => a[state] - b[state])
                 .map(dStock => 
                 <div key={dStock.name}>
                   {`${dStock.symbol} - ${dStock.name} - ${dStock.oraclePrice} - ${dStock.dexPrice} - ${dStock.ratio} - ${dStock.tvl}`}
@@ -70,7 +71,7 @@ const App = () => {
         }
       </div>
       <button onClick = {() => dispatch({type: ACTIONS.SORTPREMIUM })}>sortPremium</button>
-      <button onClick = {() => dispatch({type: ACTIONS.SORTPREMIUM })}>sortTvl</button>
+      <button onClick = {() => dispatch({type: ACTIONS.SORTTVL })}>sortTvl</button>
     </div>
   );
 }
