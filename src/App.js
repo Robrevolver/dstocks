@@ -1,4 +1,4 @@
-import React , { useEffect, useState, useReducer } from 'react';
+import React , { useEffect, useState, useReducer, useCallback } from 'react';
 import ocean from './components/OceanClient'
 import { getOraclePrice, getDexPrice, getPremium, getTvl } from './commons/functions';
 import { dStocks } from './commons/dstocks'
@@ -11,9 +11,9 @@ const ACTIONS = {
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.SORTPREMIUM:
-      return "ratio"
+      return {functionSort: (a,b) => a.ratio - b.ratio}
     case ACTIONS.SORTTVL:
-      return "tvl"
+      return {functionSort: (a,b) => a.tvl - b.tvl}
     default:  
     }
   }
@@ -62,7 +62,7 @@ const App = () => {
       {console.log(state)}
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
                 .filter(item => item.ratio > 0)
-                .sort((a,b) => a[state] - b[state])
+                .sort(state.functionSort)
                 .map(dStock => 
                 <div key={dStock.name}>
                   {`${dStock.symbol} - ${dStock.name} - ${dStock.oraclePrice} - ${dStock.dexPrice} - ${dStock.ratio} - ${dStock.tvl}`}
