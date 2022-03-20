@@ -4,16 +4,22 @@ import { getOraclePrice, getDexPrice, getPremium, getTvl } from './commons/funct
 import { dStocks } from './commons/dstocks'
 
 const ACTIONS = {
-  SORTPREMIUM: 'sortpremium',
-  SORTTVL: 'sorttvl',
+  UPSORTPREMIUM: 'upsortpremium',
+  DOWNSORTPREMIUM: 'downsortpremium',
+  UPSORTTVL: 'upsorttvl',
+  DOWNSORTTVL: 'downsorttvl'
 }
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case ACTIONS.SORTPREMIUM:
+    case ACTIONS.UPSORTPREMIUM:
       return {functionSort: (a,b) => a.ratio - b.ratio}
-    case ACTIONS.SORTTVL:
+    case ACTIONS.DOWNSORTPREMIUM:
+      return {functionSort: (a,b) => b.ratio - a.ratio}
+    case ACTIONS.UPSORTTVL:
       return {functionSort: (a,b) => a.tvl - b.tvl}
+    case ACTIONS.DOWNSORTTVL:
+      return {functionSort: (a,b) => b.tvl - a.tvl}
     default:  
     }
   }
@@ -57,7 +63,7 @@ const App = () => {
   return (
     
     <div className = "ui container">
-      <h1>dStocks V 0.0.2</h1>
+      <h1>dStocks V 0.0.3</h1>
       <div></div>
       {console.log(state)}
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
@@ -70,8 +76,11 @@ const App = () => {
                 )
         }
       </div>
-      <button onClick = {() => dispatch({type: ACTIONS.SORTPREMIUM })}>sortPremium</button>
-      <button onClick = {() => dispatch({type: ACTIONS.SORTTVL })}>sortTvl</button>
+      <button onClick = {() => dispatch({type: ACTIONS.UPSORTPREMIUM })}>sortPremium up</button>
+      <button onClick = {() => dispatch({type: ACTIONS.DOWNSORTPREMIUM })}>sortPremium down </button>
+      <button onClick = {() => dispatch({type: ACTIONS.UPSORTTVL })}>sortTvl</button>
+      <button onClick = {() => dispatch({type: ACTIONS.DOWNSORTTVL })}>sortTvl</button>
+
     </div>
   );
 }
