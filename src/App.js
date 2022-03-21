@@ -1,4 +1,4 @@
-import React , { useEffect, useState, useReducer, useCallback } from 'react';
+import React , { useEffect, useState, useReducer} from 'react';
 import ocean from './components/OceanClient'
 import { getOraclePrice, getDexPrice, getPremium, getTvl } from './commons/functions';
 import { dStocks } from './commons/dstocks'
@@ -11,6 +11,7 @@ const ACTIONS = {
 }
 
 const reducer = (state, action) => {
+
   switch (action.type) {
     case ACTIONS.UPSORTPREMIUM:
       return {functionSort: (a,b) => a.ratio - b.ratio}
@@ -28,11 +29,11 @@ const App = () => {
 
   const [oraclePriceList, setOraclePriceList] = useState([])
   const [dexPriceList, setDexPriceList] = useState([])
+  const [sortList, setSortList] = useState(true)
   const [state, dispatch] = useReducer(reducer,[])
 
-  
-  useEffect(()=> {const list = async () => { 
-              
+ 
+  useEffect(()=> {const list = async () => {              
             const oraclePrices = await ocean.prices.list(90)
             const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
             setOraclePriceList(oraclePriceList)
@@ -40,8 +41,7 @@ const App = () => {
             const dexPrices = await ocean.poolpairs.list(90)
             const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba, 
                                                         item.totalLiquidity.usd, item.apr.reward])
-            setDexPriceList(dexPriceList)
-                          
+            setDexPriceList(dexPriceList)                          
             }
     list()
 
@@ -58,14 +58,13 @@ const App = () => {
                                   })
                           )
             return arr
-          }
+          }        
 
   return (
     
     <div className = "ui container">
       <h1>dStocks V 0.0.3</h1>
-      <div></div>
-      {console.log(state)}
+      <div>{console.log(sortList)}</div>
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
                 .filter(item => item.ratio > 0)
                 .sort(state.functionSort)
@@ -76,10 +75,12 @@ const App = () => {
                 )
         }
       </div>
-      <button onClick = {() => dispatch({type: ACTIONS.UPSORTPREMIUM })}>sortPremium up</button>
-      <button onClick = {() => dispatch({type: ACTIONS.DOWNSORTPREMIUM })}>sortPremium down </button>
-      <button onClick = {() => dispatch({type: ACTIONS.UPSORTTVL })}>sortTvl</button>
-      <button onClick = {() => dispatch({type: ACTIONS.DOWNSORTTVL })}>sortTvl</button>
+      <button onClick = {()=>{setSortList(!sortList)
+                            sortList ? dispatch({type: ACTIONS.UPSORTPREMIUM }) 
+                                     : dispatch({type: ACTIONS.DOWNSORTPREMIUM})}}>sortPremium</button>
+      <button onClick = {()=>{setSortList(!sortList) 
+                            sortList ? dispatch({type: ACTIONS.UPSORTTVL }) 
+                                     : dispatch({type: ACTIONS.DOWNSORTTVL})}}>sortTvl</button>
 
     </div>
   );
