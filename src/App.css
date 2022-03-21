@@ -1,0 +1,13 @@
+.data-list {
+    border: 1px solid
+}
+
+.coloumnleft {
+    width: 150px;
+    text-align: left
+}
+
+.coloumnright {
+    width: 100px;
+    text-align: right
+}

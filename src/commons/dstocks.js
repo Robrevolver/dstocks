@@ -1,72 +1,72 @@
 export const dStocks = [
     {
         symbol: "AAPL",
-        name:	"Apple"
+        name: "Apple"
     },
 
     {
         symbol: "AMZN",
-        name:	"Amazon"
+        name: "Amazon"
     },
 
     {
         symbol: "BABA",
-        name:	"Alibaba"
+        name: "Alibaba"
     },
 
     {
         symbol: "COIN",
-        name:	"Coinbase"
+        name: "Coinbase"
     },
 
     {
         symbol: "GME",
-        name:	"Gamestop"
+        name: "Gamestop"
     },
 
     {
         symbol: "GOOGL",
-        name:	"Google"
+        name: "Google"
     },
 
     {
         symbol: "NVDA",
-        name:	"Nvidia"
+        name: "Nvidia"
     },
 
     {
         symbol: "PLTR",
-        name:	"Palantir"
+        name: "Palantir"
     },
 
     {
         symbol: "TSLA",
-        name:	"Tesla"
+        name: "Tesla"
     },
 
     {
         symbol: "ARKK",
-        name:	"Neue Technologie"
+        name: "Neue Technologie"
     },
 
     {
         symbol: "GLD",
-        name:	"Gold"
+        name: "Gold"
     },
 
     {
         symbol: "SLV",
-        name:	"Silber"
+        name: "Silber"
     },
 
     {
         symbol: "PDBC",
-        name:	"Rohstoffe"
+        name: "Rohstoffe"
     },
 
     {
         symbol: "QQQ",
-        name:	"Nasdaq"
+        name: "Nasdaq"
     },
 
     {

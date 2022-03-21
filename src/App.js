@@ -2,6 +2,7 @@ import React , { useEffect, useState, useReducer} from 'react';
 import ocean from './components/OceanClient'
 import { getOraclePrice, getDexPrice, getPremium, getTvl } from './commons/functions';
 import { dStocks } from './commons/dstocks'
+import './App.css'
 
 const ACTIONS = {
   UPSORTPREMIUM: 'upsortpremium',
@@ -31,7 +32,6 @@ const App = () => {
   const [dexPriceList, setDexPriceList] = useState([])
   const [sortList, setSortList] = useState(true)
   const [state, dispatch] = useReducer(reducer,[])
-
  
   useEffect(()=> {const list = async () => {              
             const oraclePrices = await ocean.prices.list(90)
@@ -62,7 +62,7 @@ const App = () => {
 
   return (
     
-    <div className = "ui container">
+    <div className = "">
       <h1>dStocks V 0.0.3</h1>
       <div>{console.log(sortList)}</div>
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
@@ -70,18 +70,31 @@ const App = () => {
                 .sort(state.functionSort)
                 .map(dStock => 
                 <div key={dStock.name}>
-                  {`${dStock.symbol} - ${dStock.name} - ${dStock.oraclePrice} - ${dStock.dexPrice} - ${dStock.ratio} - ${dStock.tvl}`}
+                    <div className = "data-list">
+                    <table>
+                      <tr>
+                        <th className = "coloumnleft">{dStock.symbol}</th>
+                        <th className = "coloumnleft">{dStock.name}</th>
+                        <th className = "coloumnright">{dStock.oraclePrice}</th>
+                        <th className = "coloumnright">{dStock.dexPrice}</th>
+                        <th className = "coloumnright">{dStock.ratio}</th>
+                        <th className = "coloumnright">{dStock.tvl}</th>
+                      </tr>
+                    </table>
+                    </div>
+                
                 </div>
+               
+
                 )
         }
       </div>
       <button onClick = {()=>{setSortList(!sortList)
-                            sortList ? dispatch({type: ACTIONS.UPSORTPREMIUM }) 
-                                     : dispatch({type: ACTIONS.DOWNSORTPREMIUM})}}>sortPremium</button>
+                              sortList ? dispatch({type: ACTIONS.UPSORTPREMIUM }) 
+                                       : dispatch({type: ACTIONS.DOWNSORTPREMIUM})}}>sortPremium</button>
       <button onClick = {()=>{setSortList(!sortList) 
-                            sortList ? dispatch({type: ACTIONS.UPSORTTVL }) 
-                                     : dispatch({type: ACTIONS.DOWNSORTTVL})}}>sortTvl</button>
-
+                              sortList ? dispatch({type: ACTIONS.UPSORTTVL }) 
+                                       : dispatch({type: ACTIONS.DOWNSORTTVL})}}>sortTvl</button>
     </div>
   );
 }
