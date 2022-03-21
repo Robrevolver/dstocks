@@ -63,7 +63,7 @@ const App = () => {
   return (
     
     <div className = "">
-      <h1>dStocks V 0.0.3</h1>
+      <h1>dStocks V 0.0.4</h1>
       <div>{console.log(sortList)}</div>
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
                 .filter(item => item.ratio > 0)
@@ -73,16 +73,15 @@ const App = () => {
                     <div className = "data-list">
                     <table>
                       <tr>
-                        <th className = "coloumnleft">{dStock.symbol}</th>
-                        <th className = "coloumnleft">{dStock.name}</th>
-                        <th className = "coloumnright">{dStock.oraclePrice}</th>
-                        <th className = "coloumnright">{dStock.dexPrice}</th>
-                        <th className = "coloumnright">{dStock.ratio}</th>
-                        <th className = "coloumnright">{dStock.tvl}</th>
+                        <th className = "column-left">{dStock.symbol}</th>
+                        <th className = "column-left">{dStock.name}</th>
+                        <th className = "column-right">{dStock.oraclePrice}</th>
+                        <th className = "column-right">{dStock.dexPrice}</th>
+                        <th className = "column-right">{dStock.ratio}</th>
+                        <th className = "column-right">{dStock.tvl}</th>
                       </tr>
                     </table>
-                    </div>
-                
+                    </div>               
                 </div>
                
 

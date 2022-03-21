@@ -2,12 +2,12 @@
     border: 1px solid
 }
 
-.coloumnleft {
+.column-left {
     width: 150px;
     text-align: left
 }
 
-.coloumnright {
+.column-right {
     width: 100px;
     text-align: right
 }
