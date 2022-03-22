@@ -44,8 +44,10 @@ const App = () => {
             setDexPriceList(dexPriceList)                          
             }
     list()
-
+            
   },[]);
+
+  console.log(dexPriceList)
 
   const dStocksList = (oraclePriceList, dexPriceList, dStocks ) => {            
     let arr=[]               
@@ -62,16 +64,30 @@ const App = () => {
 
   return (
     
-    <div className = "">
-      <h1>dStocks V 0.0.4</h1>
-      <div>{console.log(sortList)}</div>
+    <div className = "ui container">
+      <h1>dStocks V 0.0.5</h1>
+      <div></div>
+        <table>
+          <tbody>
+            <tr>
+              <th className = "column-left">Ticker</th>
+              <th className = "column-left">Name</th>
+              <th className = "column-right">Oraclepreis</th>
+              <th className = "column-right">Dexpreis</th>
+              <th className = "column-right">Premium</th>
+              <th className = "column-right">TVL</th>
+              </tr>
+          </tbody>
+        </table>
+        <hr></hr>
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
                 .filter(item => item.ratio > 0)
                 .sort(state.functionSort)
                 .map(dStock => 
                 <div key={dStock.name}>
-                    <div className = "data-list">
+                    <div className = "data-list">                    
                     <table>
+                      <tbody>
                       <tr>
                         <th className = "column-left">{dStock.symbol}</th>
                         <th className = "column-left">{dStock.name}</th>
@@ -80,13 +96,13 @@ const App = () => {
                         <th className = "column-right">{dStock.ratio}</th>
                         <th className = "column-right">{dStock.tvl}</th>
                       </tr>
-                    </table>
-                    </div>               
-                </div>
-               
-
+                      </tbody>
+                    </table>                    
+                    </div>                                 
+                </div>             
                 )
         }
+        
       </div>
       <button onClick = {()=>{setSortList(!sortList)
                               sortList ? dispatch({type: ACTIONS.UPSORTPREMIUM }) 
