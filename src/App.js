@@ -1,6 +1,6 @@
 import React , { useEffect, useState, useReducer} from 'react';
 import ocean from './components/OceanClient'
-import { getOraclePrice, getDexPrice, getPremium, getTvl } from './commons/functions';
+import { getOraclePrice, getDexPrice, getPremium, getTvl, getApr } from './commons/functions';
 import { dStocks } from './commons/dstocks'
 import './App.css'
 
@@ -8,7 +8,9 @@ const ACTIONS = {
   UPSORTPREMIUM: 'upsortpremium',
   DOWNSORTPREMIUM: 'downsortpremium',
   UPSORTTVL: 'upsorttvl',
-  DOWNSORTTVL: 'downsorttvl'
+  DOWNSORTTVL: 'downsorttvl',
+  UPSORTAPR: 'upsortapr',
+  DOWNSORTAPR: 'downsortapr'
 }
 
 const reducer = (state, action) => {
@@ -22,6 +24,10 @@ const reducer = (state, action) => {
       return {functionSort: (a,b) => a.tvl - b.tvl}
     case ACTIONS.DOWNSORTTVL:
       return {functionSort: (a,b) => b.tvl - a.tvl}
+    case ACTIONS.UPSORTAPR:
+        return {functionSort: (a,b) => a.apr - b.apr}
+    case ACTIONS.DOWNSORTAPR:
+        return {functionSort: (a,b) => b.apr - a.apr}
     default:  
     }
   }
@@ -40,14 +46,12 @@ const App = () => {
 
             const dexPrices = await ocean.poolpairs.list(90)
             const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba, 
-                                                        item.totalLiquidity.usd, item.apr.reward])
+                                                        item.totalLiquidity.usd, item.apr.total])
             setDexPriceList(dexPriceList)                          
             }
     list()
             
   },[]);
-
-  console.log(dexPriceList)
 
   const dStocksList = (oraclePriceList, dexPriceList, dStocks ) => {            
     let arr=[]               
@@ -56,7 +60,8 @@ const App = () => {
                                oraclePrice: getOraclePrice(oraclePriceList, dStock.symbol),
                                   dexPrice: getDexPrice(dexPriceList, dStock.symbol),
                                      ratio: getPremium(oraclePriceList, dexPriceList, dStock.symbol),
-                                       tvl: getTvl(dexPriceList, dStock.symbol)
+                                       tvl: getTvl(dexPriceList, dStock.symbol),
+                                       apr: getApr(dexPriceList, dStock.symbol)
                                   })
                           )
             return arr
@@ -65,7 +70,7 @@ const App = () => {
   return (
     
     <div className = "ui container">
-      <h1>dStocks V 0.0.5</h1>
+      <h1>dStocks V 0.0.6</h1>
       <div></div>
         <table>
           <tbody>
@@ -76,6 +81,7 @@ const App = () => {
               <th className = "column-right">Dexpreis</th>
               <th className = "column-right">Premium</th>
               <th className = "column-right">TVL</th>
+              <th className = "column-right">APR</th>
               </tr>
           </tbody>
         </table>
@@ -95,6 +101,7 @@ const App = () => {
                         <th className = "column-right">{dStock.dexPrice}</th>
                         <th className = "column-right">{dStock.ratio}</th>
                         <th className = "column-right">{dStock.tvl}</th>
+                        <th className = "column-right">{dStock.apr}</th>
                       </tr>
                       </tbody>
                     </table>                    
@@ -110,6 +117,10 @@ const App = () => {
       <button onClick = {()=>{setSortList(!sortList) 
                               sortList ? dispatch({type: ACTIONS.UPSORTTVL }) 
                                        : dispatch({type: ACTIONS.DOWNSORTTVL})}}>sortTvl</button>
+      <button onClick = {()=>{setSortList(!sortList) 
+                              sortList ? dispatch({type: ACTIONS.UPSORTAPR }) 
+                                       : dispatch({type: ACTIONS.DOWNSORTAPR})}}>sortApr</button>
+    
     </div>
   );
 }
