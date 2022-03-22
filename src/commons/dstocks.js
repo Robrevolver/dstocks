@@ -94,6 +94,26 @@ export const dStocks = [
         name:	"Schwellenländer"
     },
 
+    {
+        symbol: "FB",
+        name:	"Facebook"
+    },
+
+    {
+        symbol: "MSFT",
+        name:	"Microsoft"
+    },
+
+    {
+        symbol: "NFLX",
+        name:	"Netflix"
+    },
+
+    {
+        symbol: "VOO",
+        name:	"S&P ETF"
+    },
+
 ]
 
 export default dStocks
