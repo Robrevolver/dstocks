@@ -66,11 +66,20 @@ const App = () => {
                           )
             return arr
           }        
+    const onPremiumClick = () => {setSortList(!sortList);
+          sortList ? dispatch({type: ACTIONS.UPSORTPREMIUM }) 
+                  : dispatch({type: ACTIONS.DOWNSORTPREMIUM})}
+    const onTvlClick = () => {setSortList(!sortList);
+          sortList ? dispatch({type: ACTIONS.UPSORTTVL }) 
+                   : dispatch({type: ACTIONS.DOWNSORTTVL})}
+    const onAprClick = () => {setSortList(!sortList);
+          sortList ? dispatch({type: ACTIONS.UPSORTAPR }) 
+                   : dispatch({type: ACTIONS.DOWNSORTAPR})}
 
   return (
     
     <div className = "ui container">
-      <h1>dStocks V 0.0.6</h1>
+      <h1>dStocks V 0.0.7</h1>
       <div></div>
         <table>
           <tbody>
@@ -79,10 +88,13 @@ const App = () => {
               <th className = "column-left">Name</th>
               <th className = "column-right">Oraclepreis</th>
               <th className = "column-right">Dexpreis</th>
-              <th className = "column-right">Premium</th>
-              <th className = "column-right">TVL</th>
-              <th className = "column-right">APR</th>
-              </tr>
+              <th className = "column-right"><button className = "mini ui button" 
+                    onClick = {onPremiumClick}>Premium</button></th>
+              <th className = "column-right"><button className = "mini ui button" 
+                    onClick = {onTvlClick}>TVL</button></th>
+              <th className = "column-right"><button className = "mini ui button" 
+                    onClick = {onAprClick}>Apr</button></th>
+            </tr>
           </tbody>
         </table>
         <hr></hr>
@@ -108,19 +120,8 @@ const App = () => {
                     </div>                                 
                 </div>             
                 )
-        }
-        
+        }        
       </div>
-      <button onClick = {()=>{setSortList(!sortList)
-                              sortList ? dispatch({type: ACTIONS.UPSORTPREMIUM }) 
-                                       : dispatch({type: ACTIONS.DOWNSORTPREMIUM})}}>sortPremium</button>
-      <button onClick = {()=>{setSortList(!sortList) 
-                              sortList ? dispatch({type: ACTIONS.UPSORTTVL }) 
-                                       : dispatch({type: ACTIONS.DOWNSORTTVL})}}>sortTvl</button>
-      <button onClick = {()=>{setSortList(!sortList) 
-                              sortList ? dispatch({type: ACTIONS.UPSORTAPR }) 
-                                       : dispatch({type: ACTIONS.DOWNSORTAPR})}}>sortApr</button>
-    
     </div>
   );
 }
