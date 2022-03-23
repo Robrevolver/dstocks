@@ -3,11 +3,16 @@
 }
 
 .column-left {
-    width: 150px;
+    width: 145px;
+    text-align: left
+}
+
+.column-left-small {
+    width: 75px;
     text-align: left
 }
 
 .column-right {
-    width: 100px;
+    width: 145px;
     text-align: right
 }

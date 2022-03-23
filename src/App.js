@@ -25,9 +25,9 @@ const reducer = (state, action) => {
     case ACTIONS.DOWNSORTTVL:
       return {functionSort: (a,b) => b.tvl - a.tvl}
     case ACTIONS.UPSORTAPR:
-        return {functionSort: (a,b) => a.apr - b.apr}
+      return {functionSort: (a,b) => a.apr - b.apr}
     case ACTIONS.DOWNSORTAPR:
-        return {functionSort: (a,b) => b.apr - a.apr}
+      return {functionSort: (a,b) => b.apr - a.apr}
     default:  
     }
   }
@@ -68,14 +68,13 @@ const App = () => {
           }        
     const onPremiumClick = () => {setSortList(!sortList);
           sortList ? dispatch({type: ACTIONS.UPSORTPREMIUM }) 
-                  : dispatch({type: ACTIONS.DOWNSORTPREMIUM})}
+                   : dispatch({type: ACTIONS.DOWNSORTPREMIUM})}
     const onTvlClick = () => {setSortList(!sortList);
           sortList ? dispatch({type: ACTIONS.UPSORTTVL }) 
                    : dispatch({type: ACTIONS.DOWNSORTTVL})}
     const onAprClick = () => {setSortList(!sortList);
           sortList ? dispatch({type: ACTIONS.UPSORTAPR }) 
                    : dispatch({type: ACTIONS.DOWNSORTAPR})}
-
   return (
     
     <div className = "ui container">
@@ -84,16 +83,16 @@ const App = () => {
         <table>
           <tbody>
             <tr>
-              <th className = "column-left">Ticker</th>
+              <th className = "column-left-small">Ticker</th>
               <th className = "column-left">Name</th>
               <th className = "column-right">Oraclepreis</th>
               <th className = "column-right">Dexpreis</th>
-              <th className = "column-right"><button className = "mini ui button" 
-                    onClick = {onPremiumClick}>Premium</button></th>
-              <th className = "column-right"><button className = "mini ui button" 
-                    onClick = {onTvlClick}>TVL</button></th>
-              <th className = "column-right"><button className = "mini ui button" 
-                    onClick = {onAprClick}>Apr</button></th>
+              <th className = "column-right"><button className = "ui compact icon black basic button" 
+                    onClick = {onPremiumClick}>Premium <i className="compact sort icon"></i></button></th>
+              <th className = "column-right"><button className = "ui compact icon black basic button" 
+                    onClick = {onTvlClick}>TVL <i className="compact sort icon"></i></button></th>
+              <th className = "column-right"><button className = "ui compact icon black basic button" 
+                    onClick = {onAprClick}>APR <i className="compact sort icon"></i></button></th>
             </tr>
           </tbody>
         </table>
@@ -107,7 +106,7 @@ const App = () => {
                     <table>
                       <tbody>
                       <tr>
-                        <th className = "column-left">{dStock.symbol}</th>
+                        <th className = "column-left-small">{dStock.symbol}</th>
                         <th className = "column-left">{dStock.name}</th>
                         <th className = "column-right">{dStock.oraclePrice}</th>
                         <th className = "column-right">{dStock.dexPrice}</th>
@@ -118,8 +117,7 @@ const App = () => {
                       </tbody>
                     </table>                    
                     </div>                                 
-                </div>             
-                )
+                </div>)
         }        
       </div>
     </div>
