@@ -1,4 +1,4 @@
-import React , { useEffect, useState, useReducer} from 'react';
+import React , { useEffect, useState, useReducer } from 'react';
 import ocean from './components/OceanClient'
 import { getOraclePrice, getDexPrice, getPremium, getTvl, getApr } from './commons/functions';
 import { dStocks } from './commons/dstocks'
@@ -14,7 +14,6 @@ const ACTIONS = {
 }
 
 const reducer = (state, action) => {
-
   switch (action.type) {
     case ACTIONS.UPSORTPREMIUM:
       return {functionSort: (a,b) => a.ratio - b.ratio}
@@ -49,8 +48,7 @@ const App = () => {
                                                         item.totalLiquidity.usd, item.apr.total])
             setDexPriceList(dexPriceList)                          
             }
-    list()
-            
+    list()           
   },[]);
 
   const dStocksList = (oraclePriceList, dexPriceList, dStocks ) => {            
@@ -75,10 +73,10 @@ const App = () => {
     const onAprClick = () => {setSortList(!sortList);
           sortList ? dispatch({type: ACTIONS.UPSORTAPR }) 
                    : dispatch({type: ACTIONS.DOWNSORTAPR})}
-  return (
-    
+  
+  return (   
     <div className = "ui container">
-      <h1>dStocks V 0.0.7</h1>
+      <h1>dStocks Quickcheck V0.0.8</h1>
       <div></div>
         <table>
           <tbody>
