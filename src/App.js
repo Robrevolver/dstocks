@@ -73,10 +73,10 @@ const App = () => {
     const onAprClick = () => {setSortList(!sortList);
           sortList ? dispatch({type: ACTIONS.UPSORTAPR }) 
                    : dispatch({type: ACTIONS.DOWNSORTAPR})}
-  
+
   return (   
     <div className = "ui container">
-      <h1>dStocks Quickcheck V0.0.8</h1>
+      <h1>dStocks Quickcheck V0.0.9</h1>
       <div></div>
         <table>
           <tbody>
@@ -106,11 +106,14 @@ const App = () => {
                       <tr>
                         <th className = "column-left-small">{dStock.symbol}</th>
                         <th className = "column-left">{dStock.name}</th>
-                        <th className = "column-right">{dStock.oraclePrice}</th>
-                        <th className = "column-right">{dStock.dexPrice}</th>
-                        <th className = "column-right">{dStock.ratio}</th>
-                        <th className = "column-right">{dStock.tvl}</th>
-                        <th className = "column-right">{dStock.apr}</th>
+                        <th className = "column-right">{parseFloat(dStock.oraclePrice)
+                            .toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2})}</th>
+                        <th className = "column-right">{parseFloat(dStock.dexPrice)
+                        .toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2}) }</th>
+                        <th className = "column-right">{`${dStock.ratio}%`}</th>
+                        <th className = "column-right">{parseFloat(dStock.tvl)
+                            .toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2})}</th>
+                        <th className = "column-right">{`${dStock.apr}%`}</th>
                       </tr>
                       </tbody>
                     </table>                    
