@@ -46,7 +46,7 @@ export const dStocks = [
 
     {
         symbol: "ARKK",
-        name: "Neue Technologie"
+        name: "New Technology"
     },
 
     {
@@ -56,12 +56,12 @@ export const dStocks = [
 
     {
         symbol: "SLV",
-        name: "Silber"
+        name: "Silver"
     },
 
     {
         symbol: "PDBC",
-        name: "Rohstoffe"
+        name: "Commodities"
     },
 
     {
@@ -76,22 +76,22 @@ export const dStocks = [
 
     {
         symbol: "TLT",
-        name:	"Staatsanleihen US 20Y"
+        name:	"US Treasuries 20Y"
     },
 
     {
         symbol: "URTH",
-        name:	"MSCI Welt"
+        name:	"MSCI World"
     },
 
     {
         symbol: "VNQ",
-        name:	"Immobilien"
+        name:	"Real Estate"
     },
 
     {
         symbol: "EEM",
-        name:	"Schwellenländer"
+        name:	"Emerging Markets"
     },
 
     {

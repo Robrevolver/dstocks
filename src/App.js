@@ -4,6 +4,8 @@ import { getOraclePrice, getDexPrice, getPremium, getTvl, getApr } from './commo
 import { dStocks } from './commons/dstocks'
 import './App.css'
 
+const myCurrency = {style:'currency',currency:'USD',minimumFractionDigits:2}
+
 const ACTIONS = {
   UPSORTPREMIUM: 'upsortpremium',
   DOWNSORTPREMIUM: 'downsortpremium',
@@ -51,6 +53,9 @@ const App = () => {
     list()           
   },[]);
 
+  const priceDFI = parseFloat(getOraclePrice(oraclePriceList, "DFI")).toLocaleString('en-US', myCurrency)
+  const priceBTC = parseFloat(getOraclePrice(oraclePriceList, "BTC")).toLocaleString('en-US', myCurrency)
+
   const dStocksList = (oraclePriceList, dexPriceList, dStocks ) => {            
     let arr=[]               
     dStocks.map(dStock => arr.push({symbol: dStock.symbol, 
@@ -76,15 +81,15 @@ const App = () => {
 
   return (   
     <div className = "ui container">
-      <h1>dStocks Quickcheck V0.0.9</h1>
+      <h2><i className="chart line icon"></i>dStocks Quickcheck {` - DFI: ${priceDFI} - BTC: ${priceBTC}`}</h2>
       <div></div>
         <table>
           <tbody>
             <tr>
               <th className = "column-left-small">Ticker</th>
               <th className = "column-left">Name</th>
-              <th className = "column-right">Oraclepreis</th>
-              <th className = "column-right">Dexpreis</th>
+              <th className = "column-right">Oracleprice</th>
+              <th className = "column-right">Dexprice</th>
               <th className = "column-right"><button className = "ui compact icon black basic button" 
                     onClick = {onPremiumClick}>Premium <i className="compact sort icon"></i></button></th>
               <th className = "column-right"><button className = "ui compact icon black basic button" 
@@ -106,13 +111,10 @@ const App = () => {
                       <tr>
                         <th className = "column-left-small">{dStock.symbol}</th>
                         <th className = "column-left">{dStock.name}</th>
-                        <th className = "column-right">{parseFloat(dStock.oraclePrice)
-                            .toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2})}</th>
-                        <th className = "column-right">{parseFloat(dStock.dexPrice)
-                        .toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2}) }</th>
+                        <th className = "column-right">{parseFloat(dStock.oraclePrice).toLocaleString('en-US', myCurrency)}</th>
+                        <th className = "column-right">{parseFloat(dStock.dexPrice).toLocaleString('en-US', myCurrency) }</th>
                         <th className = "column-right">{`${dStock.ratio}%`}</th>
-                        <th className = "column-right">{parseFloat(dStock.tvl)
-                            .toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2})}</th>
+                        <th className = "column-right">{parseFloat(dStock.tvl).toLocaleString('en-US' ,myCurrency)}</th>
                         <th className = "column-right">{`${dStock.apr}%`}</th>
                       </tr>
                       </tbody>
@@ -121,6 +123,10 @@ const App = () => {
                 </div>)
         }        
       </div>
+      <hr></hr>
+      <small>If you like this webapp and use it: df1qcjmlv795j0j2n9crpf9dmxhh5wyhz6ltwwwz4l</small>
+      <br></br>
+      <small>0.0.9 / twitter: @robrevolver1 / reddit: @robbiraptor</small>  
     </div>
   );
 }
