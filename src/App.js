@@ -2,6 +2,7 @@ import React , { useEffect, useState, useReducer } from 'react';
 import ocean from './components/OceanClient'
 import { getOraclePrice, getDexPrice, getPremium, getTvl, getApr } from './commons/functions';
 import { dStocks } from './commons/dstocks'
+import Header from './components/Header';
 import './App.css'
 
 const myCurrency = {style:'currency',currency:'USD',minimumFractionDigits:2}
@@ -81,7 +82,7 @@ const App = () => {
 
   return (   
     <div className = "ui container">
-      <h2><i className="chart line icon"></i>dStocks Quickcheck {` - DFI: ${priceDFI} - BTC: ${priceBTC}`}</h2>
+      <Header priceDFI={priceDFI} priceBTC={priceBTC}/>
       <div></div>
         <table>
           <tbody>
@@ -127,6 +128,7 @@ const App = () => {
       <small>If you like this webapp and use it: df1qcjmlv795j0j2n9crpf9dmxhh5wyhz6ltwwwz4l</small>
       <br></br>
       <small>0.0.9 / twitter: @robrevolver1 / reddit: @robbiraptor</small>  
+     
     </div>
   );
 }
