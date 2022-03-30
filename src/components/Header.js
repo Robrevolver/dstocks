@@ -1,11 +1,17 @@
 import React from 'react'
 import { btclogo, dfilogo } from '../commons/icons'
+import './Header.css'
 
 const Header = ({priceDFI, priceBTC}) => {
 
     return (
-        <h2><i className="chart line icon"></i>dStocks Quickcheck {dfilogo()} {priceDFI} {btclogo()} {priceBTC}
-      </h2>
+        <div className= 'header'>
+          <div><i className="chart line icon"></i>dStocks Quickcheck</div> 
+            <div className='ticker'>
+              <div className = 'symbol'>{dfilogo()}</div>{priceDFI}
+              <div className = 'symbol'>{btclogo()}</div> {priceBTC}
+            </div>
+        </div>
     )
 
 }

@@ -1,0 +1,19 @@
+.header {
+    font-size: 1.5em;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start
+}
+
+.ticker {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.symbol {
+    padding-left: 15px;
+    padding-right: 5px;
+}
