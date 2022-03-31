@@ -114,6 +114,26 @@ export const dStocks = [
         name:	"S&P ETF"
     },
 
+    {
+        symbol: "DIS",
+        name:	"Disney"
+    },
+
+    {
+        symbol: "MSTR",
+        name:	"Microstrategy"
+    },
+
+    {
+        symbol: "MCHI",
+        name:	"MSCI China"
+    },
+
+    {
+        symbol: "INTC",
+        name:	"Intel"
+    },
+
 ]
 
 export default dStocks
