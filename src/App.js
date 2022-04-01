@@ -84,10 +84,14 @@ const App = () => {
     <div className = "ui container">
       <Header priceDFI={priceDFI} priceBTC={priceBTC}/>
             <div className = "dstocklist">       
-              <div className = "column-left-small">Ticker</div>
-              <div className = "column-left">Name</div>
-              <div className = "column-right">Oracleprice</div>
-              <div className = "column-right">Dexprice</div>
+                <div className = "linebreak">  
+                  <div className = "dstocksymbol">Ticker</div>
+                  <div className = "dstockname">Name</div>
+                </div>
+                <div className = "linebreak">
+                  <div className = "dstockprice">Oracleprice</div>
+                  <div className = "dstockprice">Dexprice</div>
+                </div>  
               <div className = "column-right"><button className = "ui compact icon black basic button" 
                     onClick = {onPremiumClick}>Premium <i className="compact sort icon"></i></button></div>
               <div className = "column-right"><button className = "ui compact icon black basic button" 
@@ -101,11 +105,15 @@ const App = () => {
                 .sort(state.functionSort)
                 .map(dStock => 
                 <div key={dStock.name}>
-                    <div className = "dstocklist">                                     
-                        <div className = "column-left-small">{dStock.symbol}</div>
-                        <div className = "column-left">{dStock.name}</div>
-                        <div className = "column-right">{parseFloat(dStock.oraclePrice).toLocaleString('en-US', myCurrency)}</div>
-                        <div className = "column-right">{parseFloat(dStock.dexPrice).toLocaleString('en-US', myCurrency) }</div>
+                    <div className = "dstocklist"> 
+                          <div className='linebreak'>                                               
+                            <div className = "dstocksymbol">{dStock.symbol}</div>
+                            <div className = "dstockname">{dStock.name}</div>
+                          </div>
+                          <div className='linebreak'> 
+                            <div className = "dstockprice">{parseFloat(dStock.oraclePrice).toLocaleString('en-US', myCurrency)}</div>
+                            <div className = "dstockprice">{parseFloat(dStock.dexPrice).toLocaleString('en-US', myCurrency) }</div>
+                          </div>
                         <div className = "column-right">{`${dStock.ratio}%`}</div>
                         <div className = "column-right">{parseFloat(dStock.tvl).toLocaleString('en-US' ,myCurrency)}</div>
                         <div className = "column-right">{`${dStock.apr}%`}</div>                                     
