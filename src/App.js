@@ -83,6 +83,7 @@ const App = () => {
   return (   
     <div className = "ui container">
       <Header priceDFI={priceDFI} priceBTC={priceBTC}/>
+            <hr/>
             <div className = "dstocklist">       
                 <div className = "linebreak">  
                   <div className = "dstocksymbol">Ticker</div>
@@ -92,14 +93,14 @@ const App = () => {
                   <div className = "dstockprice">Oracleprice</div>
                   <div className = "dstockprice">Dexprice</div>
                 </div>  
-              <div className = "column-right"><button className = "ui compact icon black basic button" 
-                    onClick = {onPremiumClick}>Premium <i className="compact sort icon"></i></button></div>
+              <div className = "dstockpremium"><button className = "ui compact icon black basic button" 
+                    onClick = {onPremiumClick}>Pr.<i className="compact sort icon"></i></button></div>
               <div className = "column-right"><button className = "ui compact icon black basic button" 
                     onClick = {onTvlClick}>TVL <i className="compact sort icon"></i></button></div>
               <div className = "column-right"><button className = "ui compact icon black basic button" 
                     onClick = {onAprClick}>APR <i className="compact sort icon"></i></button></div>
             </div>
-        <hr></hr>
+        <hr/>
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
                 .filter(item => item.ratio > 0)
                 .sort(state.functionSort)
@@ -114,17 +115,18 @@ const App = () => {
                             <div className = "dstockprice">{parseFloat(dStock.oraclePrice).toLocaleString('en-US', myCurrency)}</div>
                             <div className = "dstockprice">{parseFloat(dStock.dexPrice).toLocaleString('en-US', myCurrency) }</div>
                           </div>
-                        <div className = "column-right">{`${dStock.ratio}%`}</div>
+                        <div className = "dstockpremium">{`${dStock.ratio}%`}</div>
                         <div className = "column-right">{parseFloat(dStock.tvl).toLocaleString('en-US' ,myCurrency)}</div>
                         <div className = "column-right">{`${dStock.apr}%`}</div>                                     
                     </div>                                 
                 </div>)
         }        
       </div>
-      <hr></hr>
-      <small>If you like divis webapp and use it: df1qcjmlv795j0j2n9crpf9dmxhh5wyhz6ltwwwz4l</small>
+      <hr/>
+
+      <small>If you like this webapp and use it: df1qcjmlv795j0j2n9crpf9dmxhh5wyhz6ltwwwz4l</small>
       <br></br>
-      <small>0.0.9 / twitter: @robrevolver1 / reddit: @robbiraptor</small>  
+      <small>0.1.0 / twitter: @robrevolver1 / reddit: @robbiraptor</small>  
      
     </div>
   );

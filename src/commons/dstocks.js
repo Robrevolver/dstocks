@@ -46,7 +46,7 @@ export const dStocks = [
 
     {
         symbol: "ARKK",
-        name: "New Technology"
+        name: "New Tech."
     },
 
     {
@@ -76,7 +76,7 @@ export const dStocks = [
 
     {
         symbol: "TLT",
-        name:	"US Treasuries 20Y"
+        name:	"US Treasuries"
     },
 
     {
@@ -91,7 +91,7 @@ export const dStocks = [
 
     {
         symbol: "EEM",
-        name:	"Emerging Markets"
+        name:	"Emerg.Markets"
     },
 
     {
@@ -121,7 +121,7 @@ export const dStocks = [
 
     {
         symbol: "MSTR",
-        name:	"Microstrategy"
+        name:	"Microstrat."
     },
 
     {
