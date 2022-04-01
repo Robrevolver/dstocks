@@ -83,49 +83,38 @@ const App = () => {
   return (   
     <div className = "ui container">
       <Header priceDFI={priceDFI} priceBTC={priceBTC}/>
-      <div></div>
-        <table>
-          <tbody>
-            <tr>
-              <th className = "column-left-small">Ticker</th>
-              <th className = "column-left">Name</th>
-              <th className = "column-right">Oracleprice</th>
-              <th className = "column-right">Dexprice</th>
-              <th className = "column-right"><button className = "ui compact icon black basic button" 
-                    onClick = {onPremiumClick}>Premium <i className="compact sort icon"></i></button></th>
-              <th className = "column-right"><button className = "ui compact icon black basic button" 
-                    onClick = {onTvlClick}>TVL <i className="compact sort icon"></i></button></th>
-              <th className = "column-right"><button className = "ui compact icon black basic button" 
-                    onClick = {onAprClick}>APR <i className="compact sort icon"></i></button></th>
-            </tr>
-          </tbody>
-        </table>
+            <div className = "dstocklist">       
+              <div className = "column-left-small">Ticker</div>
+              <div className = "column-left">Name</div>
+              <div className = "column-right">Oracleprice</div>
+              <div className = "column-right">Dexprice</div>
+              <div className = "column-right"><button className = "ui compact icon black basic button" 
+                    onClick = {onPremiumClick}>Premium <i className="compact sort icon"></i></button></div>
+              <div className = "column-right"><button className = "ui compact icon black basic button" 
+                    onClick = {onTvlClick}>TVL <i className="compact sort icon"></i></button></div>
+              <div className = "column-right"><button className = "ui compact icon black basic button" 
+                    onClick = {onAprClick}>APR <i className="compact sort icon"></i></button></div>
+            </div>
         <hr></hr>
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
                 .filter(item => item.ratio > 0)
                 .sort(state.functionSort)
                 .map(dStock => 
                 <div key={dStock.name}>
-                    <div className = "data-list">                    
-                    <table>
-                      <tbody>
-                      <tr>
-                        <th className = "column-left-small">{dStock.symbol}</th>
-                        <th className = "column-left">{dStock.name}</th>
-                        <th className = "column-right">{parseFloat(dStock.oraclePrice).toLocaleString('en-US', myCurrency)}</th>
-                        <th className = "column-right">{parseFloat(dStock.dexPrice).toLocaleString('en-US', myCurrency) }</th>
-                        <th className = "column-right">{`${dStock.ratio}%`}</th>
-                        <th className = "column-right">{parseFloat(dStock.tvl).toLocaleString('en-US' ,myCurrency)}</th>
-                        <th className = "column-right">{`${dStock.apr}%`}</th>
-                      </tr>
-                      </tbody>
-                    </table>                    
+                    <div className = "dstocklist">                                     
+                        <div className = "column-left-small">{dStock.symbol}</div>
+                        <div className = "column-left">{dStock.name}</div>
+                        <div className = "column-right">{parseFloat(dStock.oraclePrice).toLocaleString('en-US', myCurrency)}</div>
+                        <div className = "column-right">{parseFloat(dStock.dexPrice).toLocaleString('en-US', myCurrency) }</div>
+                        <div className = "column-right">{`${dStock.ratio}%`}</div>
+                        <div className = "column-right">{parseFloat(dStock.tvl).toLocaleString('en-US' ,myCurrency)}</div>
+                        <div className = "column-right">{`${dStock.apr}%`}</div>                                     
                     </div>                                 
                 </div>)
         }        
       </div>
       <hr></hr>
-      <small>If you like this webapp and use it: df1qcjmlv795j0j2n9crpf9dmxhh5wyhz6ltwwwz4l</small>
+      <small>If you like divis webapp and use it: df1qcjmlv795j0j2n9crpf9dmxhh5wyhz6ltwwwz4l</small>
       <br></br>
       <small>0.0.9 / twitter: @robrevolver1 / reddit: @robbiraptor</small>  
      

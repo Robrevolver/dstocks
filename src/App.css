@@ -1,5 +1,7 @@
-.data-list {
-    border: 1px
+.dstocklist {
+    display: flex;
+    flex-direction: row;
+    align-items: center
 }
 
 .column-left {
