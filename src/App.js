@@ -3,6 +3,7 @@ import ocean from './components/OceanClient'
 import { getOraclePrice, getDexPrice, getPremium, getTvl, getApr } from './commons/functions';
 import { dStocks } from './commons/dstocks'
 import Header from './components/Header';
+import Footer from './components/Footer';
 import './App.css'
 
 const myCurrency = {style:'currency',currency:'USD',minimumFractionDigits:2}
@@ -94,7 +95,7 @@ const App = () => {
                   <div className = "dstockprice">Dexprice</div>
                 </div>  
               <div className = "dstockpremium"><button className = "ui compact icon black basic button" 
-                    onClick = {onPremiumClick}>Pr.<i className="compact sort icon"></i></button></div>
+                    onClick = {onPremiumClick}>PRM<i className="compact sort icon"></i></button></div>
               <div className = "column-right"><button className = "ui compact icon black basic button" 
                     onClick = {onTvlClick}>TVL <i className="compact sort icon"></i></button></div>
               <div className = "column-right"><button className = "ui compact icon black basic button" 
@@ -123,11 +124,7 @@ const App = () => {
         }        
       </div>
       <hr/>
-
-      <small>If you like this webapp and use it: df1qcjmlv795j0j2n9crpf9dmxhh5wyhz6ltwwwz4l</small>
-      <br></br>
-      <small>0.1.0 / twitter: @robrevolver1 / reddit: @robbiraptor</small>  
-     
+      <Footer />    
     </div>
   );
 }
