@@ -36,6 +36,11 @@
     text-align: center;
 }
 
+.dstockpremiumhead {
+    width: 85px;
+    text-align: right;
+}
+
 .column-right {
     width: 100px;
     text-align: right;

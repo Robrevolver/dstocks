@@ -94,7 +94,7 @@ const App = () => {
                   <div className = "dstockprice">Oracleprice</div>
                   <div className = "dstockprice">Dexprice</div>
                 </div>  
-              <div className = "dstockpremium"><button className = "ui compact icon black basic button" 
+              <div className = "dstockpremiumhead"><button className = "ui compact icon black basic button" 
                     onClick = {onPremiumClick}>PRM<i className="compact sort icon"></i></button></div>
               <div className = "column-right"><button className = "ui compact icon black basic button" 
                     onClick = {onTvlClick}>TVL <i className="compact sort icon"></i></button></div>
