@@ -1,5 +1,18 @@
+.page-container {
+    display: block;
+    /* flex-direction: column; */
+    /* justify-content: flex-start; */
+    /* align-items: center; */
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1em;
+    padding-right: 1em
+
+}
+
 .dstocklist {
-    font-size: 0.9em;
+    font-size: 1em;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -22,6 +35,7 @@
 .dstockname {
     display: flex;
     flex-wrap: wrap;
+    font-size: 0.8em;
     width: 80px;
     text-align: left
 }
@@ -32,20 +46,21 @@
 }
 
 .dstockpremium {
-    width: 85px;
+    width: 70px;
     text-align: center;
 }
 
-.dstockpremiumhead {
-    width: 85px;
+.dstocktvl {
+    width: 100px;
     text-align: right;
 }
 
-.column-right {
-    width: 100px;
+.dstockapr {
+    width: 70px;
     text-align: right;
 }
 
 h2 {
     padding: 20px 0
 }
+

@@ -26,5 +26,5 @@ export const getTvl = (listObj, symbol) => {
 
 export const getApr = (listObj, symbol) => {
   const result =  listObj.filter(item => item[0] === symbol).map(item => item[3])
-  return parseFloat(result*100).toFixed(2)
+  return parseFloat(result*100).toFixed(1)
 } 

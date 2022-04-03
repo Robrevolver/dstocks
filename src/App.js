@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import './App.css'
 
 const myCurrency = {style:'currency',currency:'USD',minimumFractionDigits:2}
+const myCurrency0digit = {style:'currency',currency:'USD',minimumFractionDigits:1}
 
 const ACTIONS = {
   UPSORTPREMIUM: 'upsortpremium',
@@ -82,7 +83,7 @@ const App = () => {
                    : dispatch({type: ACTIONS.DOWNSORTAPR})}
 
   return (   
-    <div className = "ui container">
+    <div className = "page-container">
       <Header priceDFI={priceDFI} priceBTC={priceBTC}/>
             <hr/>
             <div className = "dstocklist">       
@@ -94,12 +95,12 @@ const App = () => {
                   <div className = "dstockprice">Oracleprice</div>
                   <div className = "dstockprice">Dexprice</div>
                 </div>  
-              <div className = "dstockpremiumhead"><button className = "ui compact icon black basic button" 
-                    onClick = {onPremiumClick}>PRM<i className="compact sort icon"></i></button></div>
-              <div className = "column-right"><button className = "ui compact icon black basic button" 
-                    onClick = {onTvlClick}>TVL <i className="compact sort icon"></i></button></div>
-              <div className = "column-right"><button className = "ui compact icon black basic button" 
-                    onClick = {onAprClick}>APR <i className="compact sort icon"></i></button></div>
+              <div className = "dstockpremium"><button className = "ui mini icon black basic button" 
+                    onClick = {onPremiumClick}>PRM<i className="sort icon"></i></button></div>
+              <div className = "dstocktvl"><button className = "ui mini icon black basic button" 
+                    onClick = {onTvlClick}>Total Value <i className="sort icon"></i></button></div>
+              <div className = "dstockapr"><button className = "ui mini icon black basic button" 
+                    onClick = {onAprClick}>APR <i className="sort icon"></i></button></div>
             </div>
         <hr/>
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
@@ -117,8 +118,8 @@ const App = () => {
                             <div className = "dstockprice">{parseFloat(dStock.dexPrice).toLocaleString('en-US', myCurrency) }</div>
                           </div>
                         <div className = "dstockpremium">{`${dStock.ratio}%`}</div>
-                        <div className = "column-right">{parseFloat(dStock.tvl).toLocaleString('en-US' ,myCurrency)}</div>
-                        <div className = "column-right">{`${dStock.apr}%`}</div>                                     
+                        <div className = "dstocktvl">{parseFloat(dStock.tvl).toLocaleString('en-US' ,myCurrency0digit)}</div>
+                        <div className = "dstockapr">{`${dStock.apr}%`}</div>                                     
                     </div>                                 
                 </div>)
         }        
