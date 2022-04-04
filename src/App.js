@@ -53,7 +53,11 @@ const App = () => {
                                                         item.totalLiquidity.usd, item.apr.total])
             setDexPriceList(dexPriceList)                          
             }
-    list()           
+          list()
+          
+          const interval=setInterval(()=>{list()},60000)
+          return()=>clearInterval(interval)
+
   },[]);
 
   const priceDFI = parseFloat(getOraclePrice(oraclePriceList, "DFI")).toLocaleString('en-US', myCurrency)
@@ -89,7 +93,7 @@ const App = () => {
             <div className = "dstocklist">       
                 <div className = "linebreak">  
                   <div className = "dstocksymbol">Ticker</div>
-                  <div className = "dstockname">Name</div>
+                  <div className = "dstocknameheader">Name</div>
                 </div>
                 <div className = "linebreak">
                   <div className = "dstockprice">Oracleprice</div>

@@ -1,18 +1,15 @@
 .page-container {
-    display: block;
-    /* flex-direction: column; */
-    /* justify-content: flex-start; */
-    /* align-items: center; */
+    display: flex;
+    flex-direction: column;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1em;
-    padding-right: 1em
-
+    padding-left: 0.5em;
+    padding-right: 0.5em
 }
 
 .dstocklist {
-    font-size: 1em;
+    font-size: 0.9em;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -22,21 +19,31 @@
 .linebreak {
     display: flex;
     flex-wrap: wrap;
+    width: fit-content;
+    
 }
   
 .dstocksymbol {
     display: flex;
     flex-wrap: wrap;
-    width: 70px;
+    width: 55px;
     text-align: left;
     font-weight: 900
+}
+
+.dstocknameheader {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1em;
+    width: 65px;
+    text-align: left
 }
 
 .dstockname {
     display: flex;
     flex-wrap: wrap;
     font-size: 0.8em;
-    width: 80px;
+    width: 65px;
     text-align: left
 }
 
