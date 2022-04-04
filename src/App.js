@@ -41,6 +41,7 @@ const App = () => {
   const [oraclePriceList, setOraclePriceList] = useState([])
   const [dexPriceList, setDexPriceList] = useState([])
   const [sortList, setSortList] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [state, dispatch] = useReducer(reducer,[])
  
   useEffect(()=> {const list = async () => {              
@@ -51,7 +52,8 @@ const App = () => {
             const dexPrices = await ocean.poolpairs.list(90)
             const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba, 
                                                         item.totalLiquidity.usd, item.apr.total])
-            setDexPriceList(dexPriceList)                          
+            setDexPriceList(dexPriceList)  
+            setLoading(true)                        
             }
           list()
           
@@ -88,7 +90,7 @@ const App = () => {
 
   return (   
     <div className = "page-container">
-      <Header priceDFI={priceDFI} priceBTC={priceBTC}/>
+      <Header priceDFI={priceDFI} priceBTC={priceBTC} loading={loading}/>
             <hr/>
             <div className = "dstocklist">       
                 <div className = "linebreak">  
