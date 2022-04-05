@@ -7,7 +7,6 @@ import Footer from './components/Footer';
 import './App.css'
 
 const myCurrency = {style:'currency',currency:'USD',minimumFractionDigits:2}
-const myCurrency0digit = {style:'currency',currency:'USD',minimumFractionDigits:1}
 
 const ACTIONS = {
   UPSORTPREMIUM: 'upsortpremium',
@@ -124,7 +123,7 @@ const App = () => {
                             <div className = "dstockprice">{parseFloat(dStock.dexPrice).toLocaleString('en-US', myCurrency) }</div>
                           </div>
                         <div className = "dstockpremium">{`${dStock.ratio}%`}</div>
-                        <div className = "dstocktvl">{parseFloat(dStock.tvl).toLocaleString('en-US' ,myCurrency0digit)}</div>
+                        <div className = "dstocktvl">{parseFloat(dStock.tvl).toLocaleString('en-US' ,myCurrency)}</div>
                         <div className = "dstockapr">{`${dStock.apr}%`}</div>                                     
                     </div>                                 
                 </div>)
