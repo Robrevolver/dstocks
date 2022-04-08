@@ -45,11 +45,11 @@ const App = () => {
   const [state, dispatch] = useReducer(reducer,[])
  
   useEffect(()=> {const list = async () => {              
-            const oraclePrices = await ocean.prices.list(90)
+            const oraclePrices = await ocean.prices.list(100)
             const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
             setOraclePriceList(oraclePriceList)
 
-            const dexPrices = await ocean.poolpairs.list(90)
+            const dexPrices = await ocean.poolpairs.list(100)
             const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba, 
                                                         item.totalLiquidity.usd, item.apr.total])
             setDexPriceList(dexPriceList)  
@@ -64,6 +64,7 @@ const App = () => {
 
   const priceDFI = parseFloat(getOraclePrice(oraclePriceList, "DFI")).toLocaleString('en-US', myCurrency)
   const priceBTC = parseFloat(getOraclePrice(oraclePriceList, "BTC")).toLocaleString('en-US', myCurrency)
+  console.log(oraclePriceList)
 
   const dStocksList = (oraclePriceList, dexPriceList, dStocks ) => {            
     let arr=[]               

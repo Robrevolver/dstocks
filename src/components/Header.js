@@ -5,7 +5,10 @@ import './Header.css'
 const Header = ({priceDFI, priceBTC, loading, searchTermInput}) => {
   
   const [search, setSearch] = useState('')  
-  const clearSearch = () => {setSearch("")}
+  const clearSearch = () => {
+    setSearch("")
+    return()=>clearSearch(search)
+  }
 
   useEffect(()=> {searchTermInput(search)},[search,searchTermInput])
 
