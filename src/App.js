@@ -41,6 +41,7 @@ const App = () => {
   const [dexPriceList, setDexPriceList] = useState([])
   const [sortList, setSortList] = useState(true)
   const [loading, setLoading] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
   const [state, dispatch] = useReducer(reducer,[])
  
   useEffect(()=> {const list = async () => {              
@@ -87,9 +88,14 @@ const App = () => {
           sortList ? dispatch({type: ACTIONS.UPSORTAPR }) 
                    : dispatch({type: ACTIONS.DOWNSORTAPR})}
 
+    
+    const searchTermInput = (input) => {
+          setSearchTerm(input.toUpperCase())
+          }
+       
   return (   
     <div className = "page-container">
-      <Header priceDFI={priceDFI} priceBTC={priceBTC} loading={loading}/>
+      <Header priceDFI={priceDFI} priceBTC={priceBTC} loading={loading} searchTermInput = {searchTermInput}/>
             <hr/>
             <div className = "dstocklist">       
                 <div className = "linebreak">  
@@ -109,7 +115,7 @@ const App = () => {
             </div>
         <hr/>
       <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
-                .filter(item => item.ratio > 0)
+                .filter(item => (item.symbol.substr(0,searchTerm.length)) === searchTerm)
                 .sort(state.functionSort)
                 .map(dStock => 
                 <div key={dStock.name}>
