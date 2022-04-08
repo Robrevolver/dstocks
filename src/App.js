@@ -125,12 +125,15 @@ const App = () => {
                             <div className = "dstockname">{dStock.name}</div>
                           </div>
                           <div className='linebreak'> 
-                            <div className = "dstockprice">{parseFloat(dStock.oraclePrice).toLocaleString('en-US', myCurrency)}</div>
-                            <div className = "dstockprice">{parseFloat(dStock.dexPrice).toLocaleString('en-US', myCurrency) }</div>
+                            <div className = "dstockprice">{loading === true ? parseFloat(dStock.oraclePrice).toLocaleString('en-US', myCurrency) :
+                                                                            <i className="ui mini active inline loader" />}</div>
+                            <div className = "dstockprice">{loading === true ? parseFloat(dStock.dexPrice).toLocaleString('en-US', myCurrency) :
+                                                                            <i className="ui mini active inline loader" />}</div>
                           </div>
-                        <div className = "dstockpremium">{`${dStock.ratio}%`}</div>
-                        <div className = "dstocktvl">{parseFloat(dStock.tvl).toLocaleString('en-US' ,myCurrency)}</div>
-                        <div className = "dstockapr">{`${dStock.apr}%`}</div>                                     
+                        <div className = "dstockpremium">{loading === true ? `${dStock.ratio}%` : <i className="ui mini active inline loader" />}</div>
+                        <div className = "dstocktvl">{loading === true ? parseFloat(dStock.tvl).toLocaleString('en-US' ,myCurrency) :
+                                                                            <i className="ui mini active inline loader" />}</div>
+                        <div className = "dstockapr">{loading === true ? `${dStock.apr}%` : <i className="ui mini active inline loader" />}</div>                                     
                     </div>                                 
                 </div>)
         }        

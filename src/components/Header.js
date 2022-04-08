@@ -5,6 +5,7 @@ import './Header.css'
 const Header = ({priceDFI, priceBTC, loading, searchTermInput}) => {
   
   const [search, setSearch] = useState('')  
+  const clearSearch = () => {setSearch("")}
 
   useEffect(()=> {searchTermInput(search)},[search,searchTermInput])
 
@@ -15,11 +16,14 @@ const Header = ({priceDFI, priceBTC, loading, searchTermInput}) => {
             <div className='ticker'>
               <div className = 'symbol'>{dfilogo()}</div>{loading === true ? priceDFI : <i className="ui small active inline loader" />}
               <div className = 'symbol'>{btclogo()}</div>{loading === true ? priceBTC : <i className="ui small active inline loader" />}
-            </div>
-       
+            </div>      
         </div>
-          <input type = "text" value = {search} onChange = {(event) => setSearch(event.target.value)}></input>
-        </div>
+            <div className="ui mini icon input">
+              <input type = "text" placeholder="Ticker..."
+                     value = {search} onChange = {(event) => setSearch(event.target.value)}></input>
+              <i className="circular undo link icon" onClick = {clearSearch}></i>
+            </div>         
+      </div>
     )
 }
 

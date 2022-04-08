@@ -16,7 +16,7 @@ const Footer = () => {
           <br/>
           <div>If you like this webapp and use it: df1qcjmlv795j0j2n9crpf9dmxhh5wyhz6ltwwwz4l</div>
           <br/>
-          <div onClick={openLink}>0.1.1 / twitter: @robrevolver1 / reddit: @robbiraptor / <u>defichainarthistory.com</u></div>
+          <div onClick={openLink}>0.2.0 / twitter: @robrevolver1 / reddit: @robbiraptor / <u>defichainarthistory.com</u></div>
           <br/>      
         </div>
     )
