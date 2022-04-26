@@ -1,0 +1,10 @@
+  .popup-open {  
+    position: fixed;  
+    left: 25%;  
+    right: 25%;  
+    top: 25%;  
+    bottom: 25%;  
+    margin: auto;  
+    border-radius: 20px;  
+    background: rgba(23, 134, 36, 0.685);  
+  }

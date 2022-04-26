@@ -4,6 +4,8 @@ import { getOraclePrice, getDexPrice, getPremium, getTvl, getApr } from './commo
 import { dStocks } from './commons/dstocks'
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Popup from './components/Popup';
+
 import './App.css'
 
 const myCurrency = {style:'currency',currency:'USD',minimumFractionDigits:2}
@@ -42,6 +44,7 @@ const App = () => {
   const [sortList, setSortList] = useState(true)
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
+  const [popup, setPopup] = useState({visible: false, name: "test"})
   const [state, dispatch] = useReducer(reducer,[])
  
   useEffect(()=> {const list = async () => {              
@@ -64,7 +67,7 @@ const App = () => {
 
   const priceDFI = parseFloat(getOraclePrice(oraclePriceList, "DFI")).toLocaleString('en-US', myCurrency)
   const priceBTC = parseFloat(getOraclePrice(oraclePriceList, "BTC")).toLocaleString('en-US', myCurrency)
-  console.log(oraclePriceList)
+  // console.log(oraclePriceList)
 
   const dStocksList = (oraclePriceList, dexPriceList, dStocks ) => {            
     let arr=[]               
@@ -89,16 +92,21 @@ const App = () => {
           sortList ? dispatch({type: ACTIONS.UPSORTAPR }) 
                    : dispatch({type: ACTIONS.DOWNSORTAPR})}
 
-    
     const searchTermInput = (input) => {
           setSearchTerm(input.toUpperCase())
           }
+    
+    const showPopup = (name) => {
+      console.log(popup.visible);
+      console.log(popup.name)
+      setPopup({visible: !popup.visible, name: name});
+    }      
        
   return (   
     <div className = "page-container">
       <Header priceDFI={priceDFI} priceBTC={priceBTC} loading={loading} searchTermInput = {searchTermInput}/>
             <hr/>
-            <div className = "dstocklist">       
+            <div className = "dstocklist" >       
                 <div className = "linebreak">  
                   <div className = "dstocksymbol">Ticker</div>
                   <div className = "dstocknameheader">Name</div>
@@ -120,7 +128,7 @@ const App = () => {
                 .sort(state.functionSort)
                 .map(dStock => 
                 <div key={dStock.name}>
-                    <div className = "dstocklist"> 
+                    <div className = "dstocklist" onClick={()=>{showPopup(dStock.name)}}> 
                           <div className='linebreak'>                                               
                             <div className = "dstocksymbol">{dStock.symbol}</div>
                             <div className = "dstockname">{dStock.name}</div>
@@ -141,6 +149,7 @@ const App = () => {
       </div>
       <hr/>
       <Footer />    
+      {popup.visible ? <Popup showPopup={showPopup} showName={popup.name}/> : null} 
     </div>
   );
 }
