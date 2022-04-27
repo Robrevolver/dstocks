@@ -5,7 +5,6 @@ import { dStocks } from './commons/dstocks'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Popup from './components/Popup';
-
 import './App.css'
 
 const myCurrency = {style:'currency',currency:'USD',minimumFractionDigits:2}
@@ -44,7 +43,8 @@ const App = () => {
   const [sortList, setSortList] = useState(true)
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
-  const [popup, setPopup] = useState({visible: false, name: "test"})
+  const [popup, setPopup] = useState({visible: false, dstock: {symbol: "", name: "", oraclePrice:"", dexPrice:"",
+                                                               ratio:"", tvl: "", apr:""}})
   const [state, dispatch] = useReducer(reducer,[])
  
   useEffect(()=> {const list = async () => {              
@@ -96,11 +96,10 @@ const App = () => {
           setSearchTerm(input.toUpperCase())
           }
     
-    const showPopup = (name) => {
-      console.log(popup.visible);
-      console.log(popup.name)
-      setPopup({visible: !popup.visible, name: name});
-    }      
+    const showPopup = (symbol, name, oraclePrice, dexPrice, ratio, tvl, apr) => {
+      setPopup({visible: !popup.visible, dstock:{symbol: symbol, name: name, oraclePrice: oraclePrice, 
+                                                 dexPrice: dexPrice, ratio: ratio, tvl: tvl, apr: apr}});
+          }      
        
   return (   
     <div className = "page-container">
@@ -122,13 +121,14 @@ const App = () => {
               <div className = "dstockapr"><button className = "ui mini icon black basic button" 
                     onClick = {onAprClick}>APR <i className="sort icon"></i></button></div>
             </div>
-        <hr/>
-      <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
+          <hr/>
+          <div>{dStocksList(oraclePriceList, dexPriceList, dStocks)
                 .filter(item => (item.symbol.substr(0,searchTerm.length)) === searchTerm)
                 .sort(state.functionSort)
                 .map(dStock => 
                 <div key={dStock.name}>
-                    <div className = "dstocklist" onClick={()=>{showPopup(dStock.name)}}> 
+                    <div className = "dstocklist" onClick={()=>{showPopup(dStock.symbol, dStock.name, dStock.oraclePrice,
+                                                                          dStock.dexPrice, dStock.ratio, dStock.tvl, dStock.apr )}}> 
                           <div className='linebreak'>                                               
                             <div className = "dstocksymbol">{dStock.symbol}</div>
                             <div className = "dstockname">{dStock.name}</div>
@@ -145,13 +145,12 @@ const App = () => {
                         <div className = "dstockapr">{loading === true ? `${dStock.apr}%` : <i className="ui mini active inline loader" />}</div>                                     
                     </div>                                 
                 </div>)
-        }        
-      </div>
+            }        
+          </div>
       <hr/>
       <Footer />    
-      {popup.visible ? <Popup showPopup={showPopup} showName={popup.name}/> : null} 
+      {popup.visible ? <Popup showPopup={showPopup} dstock={popup.dstock}/> : null} 
     </div>
   );
 }
-// 
 export default App;
