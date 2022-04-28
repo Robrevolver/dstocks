@@ -109,7 +109,7 @@ const App = () => {
             <hr/>
             <div className = "dstocklist" >       
                 <div className = "linebreak">  
-                  <div className = "dstocksymbol">Ticker</div>
+                  <div className = "dstocksymbolheader">Ticker</div>
                   <div className = "dstocknameheader">Name</div>
                 </div>
                 <div className = "linebreak">

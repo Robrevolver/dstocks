@@ -6,15 +6,31 @@ const myCurrency = {style:'currency',currency:'USD',minimumFractionDigits:2}
 const Popup = ({showPopup, dstock}) => {
     return (
         <div className ='popup-container'>
-            <div>{`Ticker: ${dstock.symbol}`}</div>
-            <div>{`Name: ${dstock.name}`}</div><br/>
-            <div>{`Oraclepreis: ${parseFloat(dstock.oraclePrice).toLocaleString('en-US', myCurrency)}`}</div>
-            <div>{`DEXpreis: ${parseFloat(dstock.dexPrice).toLocaleString('en-US', myCurrency)}`}</div><br/>
-            <div>{`Premium: ${dstock.ratio}%`}</div>
-            <div>{`TVL: ${parseFloat(dstock.tvl).toLocaleString('en-US', myCurrency)}`}</div>
-            <div>{`APR: ${dstock.apr}%`}</div>
-            <br/>
-            <div className = "ui small icon black basic button" onClick={showPopup}>back</div>
+             <div className="ui tiny statistic">
+                  <div className="value"><i className="chart line icon"></i> {dstock.symbol}</div>
+                  <div className="label">{dstock.name}</div>
+            </div><br/>
+            <div className="ui mini statistic">
+                  <div className="value"><i className="money bill alternate outline icon"></i> {parseFloat(dstock.oraclePrice).toLocaleString('en-US', myCurrency)}</div>
+                  <div className="label">Oracleprice</div>
+            </div>
+            <div className="ui mini statistic">
+                  <div className="value"><i className="money bill alternate outline icon"></i> {parseFloat(dstock.dexPrice).toLocaleString('en-US', myCurrency)}</div>
+                  <div className="label">DEXprice</div>
+            </div>
+            <div className="ui tiny statistic">
+                  <div className="value">{dstock.ratio} %</div>
+                  <div className="label">Premium</div>
+            </div>
+            <div className="ui tiny statistic">
+                  <div className="value">{dstock.apr} %</div>
+                  <div className="label">APR</div>
+            </div><br/>
+            <div className="ui tiny statistic">
+                  <div className="value"><i className="lock icon"></i> {parseFloat(dstock.tvl).toLocaleString('en-US', myCurrency)}</div>
+                  <div className="label">Total Value locked</div>
+            </div> <br/>          
+            <div className = "ui small icon black basic button" onClick={showPopup}>close</div>
         </div>
     )
 }

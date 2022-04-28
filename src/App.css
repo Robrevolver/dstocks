@@ -20,9 +20,18 @@
     flex-wrap: wrap;
 }
   
+.dstocksymbolheader {
+    display: flex;
+    flex-wrap: wrap;
+    width: 55px;
+    text-align: left;
+    font-weight: 900
+}
+
 .dstocksymbol {
     display: flex;
     flex-wrap: wrap;
+    color:rgb(20, 20, 189);
     width: 55px;
     text-align: left;
     font-weight: 900
