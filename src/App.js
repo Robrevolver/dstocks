@@ -51,11 +51,13 @@ const App = () => {
             const oraclePrices = await ocean.prices.list(100)
             const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
             setOraclePriceList(oraclePriceList)
-
+  
             const dexPrices = await ocean.poolpairs.list(100)
             const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba, 
-                                                        item.totalLiquidity.usd, item.apr.total])
+                                                        item.totalLiquidity.usd, item.apr.total, 
+                                                        item.apr.commission,item.apr.reward])
             setDexPriceList(dexPriceList)  
+            console.log(dexPrices)
             setLoading(true)                        
             }
           list()

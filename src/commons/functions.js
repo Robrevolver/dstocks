@@ -6,8 +6,7 @@ export function getOraclePrice(listObj, symbol) {
       }
     }  
 
-export function getDexPrice(listObj, symbol) {
-  
+export function getDexPrice(listObj, symbol) {  
    for (const [key, value] of Object.values(listObj)) {
          if (key === symbol) {
              return parseFloat(value).toFixed(3)

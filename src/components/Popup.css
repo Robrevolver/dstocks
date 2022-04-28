@@ -1,10 +1,15 @@
-  .popup {  
-    position: absolute;  
-    left: 25%;  
-    right: 25%;  
-    top: 25%;  
-    bottom: 25%;  
+  .popup-container {  
+    position: fixed; 
+    font-size: 1.25em; 
+    line-height: 1.5em;
+    left: 50%;
+    top: 50%;
+    width: 360px;
+    height: 360px;
+    margin-left: -180px;
+    margin-top: -180px;
     padding: 10px;
+    text-align: center;
     border-color: rgb(0, 0, 0);
     border-width: 1px;
     border-style: solid;
