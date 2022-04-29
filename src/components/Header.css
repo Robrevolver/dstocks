@@ -17,3 +17,16 @@
     padding-left: 15px;
     padding-right: 5px;
 }
+
+.update {
+    font-size: 0.9em;
+    color: rgb(127, 53, 127);
+    text-align: right;
+    padding-left: 15px;
+}
+
+.searchrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center  
+}

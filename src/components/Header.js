@@ -22,11 +22,14 @@ const Header = ({priceDFI, priceBTC, loading, searchTermInput}) => {
               <div className = 'symbol'>{btclogo()}</div>{loading === true ? priceBTC : <i className="ui small active inline loader" />}
             </div>      
         </div>
-            <div className="ui mini icon focus input">
-              <input type = "text" placeholder="Ticker..."
-                     value = {search} onChange = {(event) => setSearch(event.target.value)}></input>
-              <i className="circular undo link icon" onClick = {clearSearch}></i>
-            </div>         
+            <div className='searchrow'>
+              <div className="ui mini icon focus input">
+                <input type = "text" placeholder="Ticker..." value = {search} 
+                       onChange = {(event) => setSearch(event.target.value)}></input>
+                      <i className="circular undo link icon" onClick = {clearSearch}></i>
+              </div>
+              <div className='update'>Update: click/tap on stock ticker ...</div> 
+            </div>  
       </div>
     )
 }

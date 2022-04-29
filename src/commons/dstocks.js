@@ -134,6 +134,26 @@ export const dStocks = [
         name:	"Intel"
     },
 
+    {
+        symbol: "BRK.B",
+        name:	"Berkshire"
+    },
+
+    {
+        symbol: "PYPL",
+        name:	"Paypal"
+    },
+
+    {
+        symbol: "PG",
+        name:	"Procter&Gm."
+    },
+
+    {
+        symbol: "KO",
+        name:	"CocaCola"
+    },
+
 ]
 
 export default dStocks

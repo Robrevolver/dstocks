@@ -57,7 +57,7 @@ const App = () => {
                                                         item.totalLiquidity.usd, item.apr.total, 
                                                         item.apr.commission,item.apr.reward])
             setDexPriceList(dexPriceList)  
-            console.log(dexPrices)
+            // console.log(dexPrices)
             setLoading(true)                        
             }
           list()
