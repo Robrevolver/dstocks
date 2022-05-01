@@ -1,6 +1,6 @@
 import React , { useEffect, useState, useReducer } from 'react';
 import ocean from './components/OceanClient'
-import { getOraclePrice, getDexPrice, getPremium, getTvl, getApr } from './commons/functions';
+import { getDexData, getOraclePrice, getPremium} from './commons/functions';
 import { dStocks } from './commons/dstocks'
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -52,7 +52,7 @@ const App = () => {
             const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
             setOraclePriceList(oraclePriceList)
   
-            const dexPrices = await ocean.poolpairs.list(100)
+            const dexPrices = await ocean.poolpairs.list(40)
             const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba, 
                                                         item.totalLiquidity.usd, item.apr.total, 
                                                         item.apr.commission,item.apr.reward])
@@ -73,14 +73,17 @@ const App = () => {
 
   const dStocksList = (oraclePriceList, dexPriceList, dStocks ) => {            
     let arr=[]               
-    dStocks.map(dStock => arr.push({symbol: dStock.symbol, 
+    dStocks.map(dStock => {let dstockObj = getDexData(dexPriceList, dStock.symbol); return arr.push({symbol: dStock.symbol, 
                                       name: dStock.name,
                                oraclePrice: getOraclePrice(oraclePriceList, dStock.symbol),
-                                  dexPrice: getDexPrice(dexPriceList, dStock.symbol),
+                                  // dexPrice: getDexPrice(dexPriceList, dStock.symbol),
+                                     dexPrice: dstockObj.dexPrice, 
                                      ratio: getPremium(oraclePriceList, dexPriceList, dStock.symbol),
-                                       tvl: getTvl(dexPriceList, dStock.symbol),
-                                       apr: getApr(dexPriceList, dStock.symbol)
-                                  })
+                                       // tvl: getTvl(dexPriceList, dStock.symbol),
+                                       // apr: getApr(dexPriceList, dStock.symbol)
+                                       apr: dstockObj.total,
+                                       tvl: dstockObj.tvl
+                                  })}
                           )
             return arr
           }        

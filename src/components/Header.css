@@ -19,10 +19,10 @@
 }
 
 .update {
-    font-size: 0.9em;
+    font-size: 0.9em; 
     color: rgb(127, 53, 127);
     text-align: right;
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
 .searchrow {

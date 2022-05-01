@@ -28,7 +28,7 @@ const Header = ({priceDFI, priceBTC, loading, searchTermInput}) => {
                        onChange = {(event) => setSearch(event.target.value)}></input>
                       <i className="circular undo link icon" onClick = {clearSearch}></i>
               </div>
-              <div className='update'>Update: click/tap on stock ticker ...</div> 
+              <div className='update'>Update: click/tap on stock ticker</div> 
             </div>  
       </div>
     )
