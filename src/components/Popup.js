@@ -19,12 +19,20 @@ const Popup = ({showPopup, dstock}) => {
                   <div className="label">DEXprice</div>
             </div>
             <div className="ui tiny statistic">
-                  <div className="value">{dstock.ratio} %</div>
+                  <div className="value"><i className="exclamation icon"></i> {dstock.ratio} %</div>
                   <div className="label">Premium</div>
             </div>
             <div className="ui tiny statistic">
                   <div className="value">{dstock.apr} %</div>
-                  <div className="label">APR</div>
+                  <div className="label">APR total</div>
+            </div><br/>
+            <div className="ui tiny statistic">
+                  <div className="value">{dstock.commission} %</div>
+                  <div className="label">Commission</div>
+            </div>
+            <div className="ui tiny statistic">
+                  <div className="value">{dstock.reward} %</div>
+                  <div className="label">Reward</div>
             </div><br/>
             <div className="ui tiny statistic">
                   <div className="value"><i className="lock icon"></i> {parseFloat(dstock.tvl).toLocaleString('en-US', myCurrency)}</div>

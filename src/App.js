@@ -10,12 +10,12 @@ import './App.css'
 const myCurrency = {style:'currency',currency:'USD',minimumFractionDigits:2}
 
 const ACTIONS = {
-  UPSORTPREMIUM: 'upsortpremium',
-  DOWNSORTPREMIUM: 'downsortpremium',
-  UPSORTTVL: 'upsorttvl',
-  DOWNSORTTVL: 'downsorttvl',
-  UPSORTAPR: 'upsortapr',
-  DOWNSORTAPR: 'downsortapr'
+    UPSORTPREMIUM: 'upsortpremium',
+    DOWNSORTPREMIUM: 'downsortpremium',
+    UPSORTTVL: 'upsorttvl',
+    DOWNSORTTVL: 'downsorttvl',
+    UPSORTAPR: 'upsortapr',
+    DOWNSORTAPR: 'downsortapr'
 }
 
 const reducer = (state, action) => {
@@ -43,8 +43,8 @@ const App = () => {
   const [sortList, setSortList] = useState(true)
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
-  const [popup, setPopup] = useState({visible: false, dstock: {symbol: "", name: "", oraclePrice:"", dexPrice:"",
-                                                               ratio:"", tvl: "", apr:""}})
+  const [popup, setPopup] = useState({visible: false, dstockPopup: {symbol: "", name: "", oraclePrice:"", dexPrice:"",
+                                                               ratio:"", tvl: "", apr:"", commission:"", reward:""}})
   const [state, dispatch] = useReducer(reducer,[])
  
   useEffect(()=> {const list = async () => {              
@@ -57,7 +57,6 @@ const App = () => {
                                                         item.totalLiquidity.usd, item.apr.total, 
                                                         item.apr.commission,item.apr.reward])
             setDexPriceList(dexPriceList)  
-            // console.log(dexPrices)
             setLoading(true)                        
             }
           list()
@@ -77,13 +76,12 @@ const App = () => {
                              arr.push({symbol: dStock.symbol, 
                                          name: dStock.name,
                                   oraclePrice: getOraclePrice(oraclePriceList, dStock.symbol),
-                                  // dexPrice: getDexPrice(dexPriceList, dStock.symbol),
                                      dexPrice: dstockObj.dexPrice, 
                                         ratio: getPremium(oraclePriceList, dexPriceList, dStock.symbol),
-                                     //   tvl: getTvl(dexPriceList, dStock.symbol),
-                                     //   apr: getApr(dexPriceList, dStock.symbol),
                                           tvl: dstockObj.tvl, 
-                                          apr: dstockObj.total
+                                          apr: dstockObj.total,
+                                   commission: dstockObj.commission,
+                                       reward: dstockObj.reward
                                 }) : null
                                 ) 
                             }   
@@ -105,13 +103,10 @@ const App = () => {
           setSearchTerm(input.toUpperCase())
           }
     
-    const showPopup = (symbol, name, oraclePrice, dexPrice, ratio, tvl, apr) => {
-      setPopup({visible: !popup.visible, dstock:{symbol: symbol, name: name, oraclePrice: oraclePrice, 
-                                                 dexPrice: dexPrice, ratio: ratio, tvl: tvl, apr: apr}});
+    const showPopup = (symbol, name, oraclePrice, dexPrice, ratio, tvl, apr, commission, reward) => {
+              setPopup({visible: !popup.visible, dstockPopup:{symbol,name,oraclePrice,dexPrice,ratio,tvl,apr,commission,reward }});
           }      
-  
-            
-
+          
   return dexPriceList !==[] ? (   
     
     <div className = "page-container"> 
@@ -140,7 +135,8 @@ const App = () => {
                 .map(dStock => 
                 <div key={dStock.name}>
                     <div className = "dstocklist" onClick={()=>{showPopup(dStock.symbol, dStock.name, dStock.oraclePrice,
-                                                                          dStock.dexPrice, dStock.ratio, dStock.tvl, dStock.apr )}}> 
+                                                                          dStock.dexPrice, dStock.ratio, dStock.tvl, dStock.apr,
+                                                                          dStock.commission, dStock.reward)}}> 
                           <div className='linebreak'>                                               
                             <div className = "dstocksymbol">{dStock.symbol}</div>
                             <div className = "dstockname">{dStock.name}</div>
@@ -161,7 +157,7 @@ const App = () => {
           </div>
       <hr/>
       <Footer />    
-      {popup.visible ? <Popup showPopup={showPopup} dstock={popup.dstock}/> : null} 
+      {popup.visible ? <Popup showPopup={showPopup} dstock={popup.dstockPopup}/> : null} 
     </div>
   ) : null;
 }
