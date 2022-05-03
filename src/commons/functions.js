@@ -29,13 +29,13 @@ export const getApr = (listObj, symbol) => {
 } 
 
 export const getDexData = (listObj, symbol) => {
-  const arr = []
-  listObj.filter(item => item[0] === symbol)
-         .map(item => arr.push({dexPrice: parseFloat(item[1]).toFixed(2),
-                                tvl: parseFloat(item[2]).toFixed(2),
-                                total: parseFloat(item[3]*100).toFixed(1),
-                                commission: parseFloat(item[4]*100).toFixed(1),
-                                reward: parseFloat(item[5]*100).toFixed(1)
-                                }))
-  return arr[0]
-} 
+
+  const result =  listObj.filter(item => item[0] === symbol)
+                         .map(item => Object.create({dexPrice: parseFloat(item[1]).toFixed(2),
+                                                          tvl: parseFloat(item[2]).toFixed(2),
+                                                        total: parseFloat(item[3]*100).toFixed(1),
+                                                   commission: parseFloat(item[4]*100).toFixed(1),
+                                                       reward: parseFloat(item[5]*100).toFixed(1)})                                
+                              )
+                              return result[0]
+                             }

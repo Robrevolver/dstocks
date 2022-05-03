@@ -69,24 +69,28 @@ const App = () => {
 
   const priceDFI = parseFloat(getOraclePrice(oraclePriceList, "DFI")).toLocaleString('en-US', myCurrency)
   const priceBTC = parseFloat(getOraclePrice(oraclePriceList, "BTC")).toLocaleString('en-US', myCurrency)
-  // console.log(oraclePriceList)
 
   const dStocksList = (oraclePriceList, dexPriceList, dStocks ) => {            
-    let arr=[]               
-    dStocks.map(dStock => {let dstockObj = getDexData(dexPriceList, dStock.symbol); return arr.push({symbol: dStock.symbol, 
-                                      name: dStock.name,
-                               oraclePrice: getOraclePrice(oraclePriceList, dStock.symbol),
+    let arr = []
+    dStocks.map(dStock => {let dstockObj = getDexData(dexPriceList, dStock.symbol);                            
+                            return ( dstockObj !== undefined ? 
+                             arr.push({symbol: dStock.symbol, 
+                                         name: dStock.name,
+                                  oraclePrice: getOraclePrice(oraclePriceList, dStock.symbol),
                                   // dexPrice: getDexPrice(dexPriceList, dStock.symbol),
                                      dexPrice: dstockObj.dexPrice, 
-                                     ratio: getPremium(oraclePriceList, dexPriceList, dStock.symbol),
-                                       // tvl: getTvl(dexPriceList, dStock.symbol),
-                                       // apr: getApr(dexPriceList, dStock.symbol)
-                                       apr: dstockObj.total,
-                                       tvl: dstockObj.tvl
-                                  })}
-                          )
-            return arr
+                                        ratio: getPremium(oraclePriceList, dexPriceList, dStock.symbol),
+                                     //   tvl: getTvl(dexPriceList, dStock.symbol),
+                                     //   apr: getApr(dexPriceList, dStock.symbol),
+                                          tvl: dstockObj.tvl, 
+                                          apr: dstockObj.total
+                                }) : null
+                                ) 
+                            }   
+                  )
+              return arr
           }        
+
     const onPremiumClick = () => {setSortList(!sortList);
           sortList ? dispatch({type: ACTIONS.UPSORTPREMIUM }) 
                    : dispatch({type: ACTIONS.DOWNSORTPREMIUM})}
@@ -105,9 +109,12 @@ const App = () => {
       setPopup({visible: !popup.visible, dstock:{symbol: symbol, name: name, oraclePrice: oraclePrice, 
                                                  dexPrice: dexPrice, ratio: ratio, tvl: tvl, apr: apr}});
           }      
-       
-  return (   
-    <div className = "page-container">
+  
+            
+
+  return dexPriceList !==[] ? (   
+    
+    <div className = "page-container"> 
       <Header priceDFI={priceDFI} priceBTC={priceBTC} loading={loading} searchTermInput = {searchTermInput}/>
             <hr/>
             <div className = "dstocklist" >       
@@ -156,6 +163,6 @@ const App = () => {
       <Footer />    
       {popup.visible ? <Popup showPopup={showPopup} dstock={popup.dstock}/> : null} 
     </div>
-  );
+  ) : null;
 }
 export default App;
