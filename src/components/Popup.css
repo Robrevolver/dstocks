@@ -16,3 +16,45 @@
     border-radius: 10px;
     background: rgba(255, 255, 255);  
   }
+  .popup-unit {
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-right: 5px
+  }
+  .popup-unit-color {
+    background:rgb(245, 245, 245);
+    border-radius: 3px;
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-right: 5px
+  }
+  .popup-unit-row-border {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px
+  }
+  .popup-unit-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px
+  }
+  .popup-value {
+    font-size: 1.25em;
+  }
+  .popup-label {
+    font-size: 0.75em;
+    font-weight: 750
+  }
+
