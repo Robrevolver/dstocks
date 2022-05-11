@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import { btclogo, dfilogo } from '../commons/icons'
+import { btclogo, dfilogo, dusdlogo } from '../commons/icons'
 import './Header.css'
 
-const Header = ({priceDFI, priceBTC, loading, searchTermInput}) => {
+const Header = ({priceDFI, priceBTC, priceDUSD, loading, searchTermInput}) => {
   
   const [search, setSearch] = useState('')  
   
@@ -20,6 +20,7 @@ const Header = ({priceDFI, priceBTC, loading, searchTermInput}) => {
             <div className='ticker'>
               <div className = 'symbol'>{dfilogo()}</div>{loading === true ? priceDFI : <i className="ui small active inline loader" />}
               <div className = 'symbol'>{btclogo()}</div>{loading === true ? priceBTC : <i className="ui small active inline loader" />}
+              <div className = 'symbol'>{dusdlogo()}</div>{loading === true ? priceDUSD : <i className="ui small active inline loader" />}
             </div>      
         </div>
             <div className='searchrow'>

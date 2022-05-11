@@ -1,6 +1,6 @@
 import React , { useEffect, useState, useReducer } from 'react';
 import ocean from './components/OceanClient'
-import { getDexData, getOraclePrice, getPremium} from './commons/functions';
+import { getDexData, getDexPriceA, getDexPriceB, getOraclePrice, getPremium} from './commons/functions';
 import { dStocks } from './commons/dstocks'
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -55,9 +55,10 @@ const App = () => {
             const dexPrices = await ocean.poolpairs.list(40)
             const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba, 
                                                         item.totalLiquidity.usd, item.apr.total, 
-                                                        item.apr.commission,item.apr.reward])
+                                                        item.apr.commission,item.apr.reward,item.priceRatio.ab])
             setDexPriceList(dexPriceList)  
-            setLoading(true)                        
+            setLoading(true)   
+            // console.log(dexPrices)                     
             }
           list()
           
@@ -68,11 +69,14 @@ const App = () => {
 
   const priceDFI = parseFloat(getOraclePrice(oraclePriceList, "DFI")).toLocaleString('en-US', myCurrency)
   const priceBTC = parseFloat(getOraclePrice(oraclePriceList, "BTC")).toLocaleString('en-US', myCurrency)
+  const priceDUSD = parseFloat(getDexPriceA(dexPriceList, "DUSD")*getDexPriceB(dexPriceList, "USDC")).toLocaleString('en-US', myCurrency)
+
+  // console.log(getDexPriceA(dexPriceList, "DUSD")*getDexPriceB(dexPriceList, "USDC"))
 
   const dStocksList = (oraclePriceList, dexPriceList, dStocks ) => {            
     let arr = []
     dStocks.map(dStock => {let dstockObj = getDexData(dexPriceList, dStock.symbol);                            
-                            return ( dstockObj !== undefined ? 
+                            return (dstockObj !== undefined ? 
                              arr.push({symbol: dStock.symbol, 
                                          name: dStock.name,
                                   oraclePrice: getOraclePrice(oraclePriceList, dStock.symbol),
@@ -110,7 +114,7 @@ const App = () => {
   return dexPriceList !==[] ? (   
     
     <div className = "page-container"> 
-      <Header priceDFI={priceDFI} priceBTC={priceBTC} loading={loading} searchTermInput = {searchTermInput}/>
+      <Header priceDFI={priceDFI} priceDUSD={priceDUSD} priceBTC={priceBTC} loading={loading} searchTermInput = {searchTermInput}/>
             <hr/>
             <div className = "dstocklist" >       
                 <div className = "linebreak">  
