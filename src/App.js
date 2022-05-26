@@ -48,6 +48,10 @@ const App = () => {
   const [state, dispatch] = useReducer(reducer,[])
  
   useEffect(()=> {const list = async () => {              
+            
+            //const chartPrices = await ocean.prices.getFeedWithInterval()
+            //console.log(chartPrices) 
+
             const oraclePrices = await ocean.prices.list(100)
             const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
             setOraclePriceList(oraclePriceList)
@@ -57,8 +61,8 @@ const App = () => {
                                                         item.totalLiquidity.usd, item.apr.total, 
                                                         item.apr.commission,item.apr.reward,item.priceRatio.ab])
             setDexPriceList(dexPriceList)  
-            setLoading(true)   
-            // console.log(dexPrices)                     
+            setLoading(true)                               
+
             }
           list()
           
@@ -69,7 +73,7 @@ const App = () => {
 
   const priceDFI = parseFloat(getOraclePrice(oraclePriceList, "DFI")).toLocaleString('en-US', myCurrency)
   const priceBTC = parseFloat(getOraclePrice(oraclePriceList, "BTC")).toLocaleString('en-US', myCurrency)
-  const priceDUSD = parseFloat(getDexPriceA(dexPriceList, "DUSD")*getDexPriceB(dexPriceList, "USDC")).toLocaleString('en-US', myCurrency)
+  const priceDUSD = parseFloat(getDexPriceA(dexPriceList, "DUSD") * getDexPriceB(dexPriceList, "USDC")).toLocaleString('en-US', myCurrency)
 
   // console.log(getDexPriceA(dexPriceList, "DUSD")*getDexPriceB(dexPriceList, "USDC"))
 

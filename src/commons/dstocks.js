@@ -61,7 +61,7 @@ export const dStocks = [
 
     {
         symbol: "PDBC",
-        name: "Commodities"
+        name: "Commod. ETF"
     },
 
     {
@@ -153,6 +153,26 @@ export const dStocks = [
         symbol: "KO",
         name:	"CocaCola"
     },
+
+    {
+        symbol: "CS",
+        name:	"Credit Suisse"
+    },
+
+    {
+        symbol: "SAP",
+        name:	"SAP SE"
+    },
+
+    {
+        symbol: "GSG",
+        name:	"Commod. ETF"
+    },
+
+    {
+        symbol: "URA",
+        name:	"Uran ETF"
+    }
 
 ]
 
