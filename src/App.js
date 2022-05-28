@@ -56,26 +56,25 @@ const App = () => {
             const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
             setOraclePriceList(oraclePriceList)
   
-            const dexPrices = await ocean.poolpairs.list(40)
+            const dexPrices = await ocean.poolpairs.list(44)
             const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba, 
                                                         item.totalLiquidity.usd, item.apr.total, 
                                                         item.apr.commission,item.apr.reward,item.priceRatio.ab])
             setDexPriceList(dexPriceList)  
             setLoading(true)                               
-
-            }
+            
+            // console.log(dexPrices)
+            
+          }
           list()
-          
+
           const interval=setInterval(()=>{list()},60000)
           return()=>clearInterval(interval)
-
   },[]);
 
   const priceDFI = parseFloat(getOraclePrice(oraclePriceList, "DFI")).toLocaleString('en-US', myCurrency)
   const priceBTC = parseFloat(getOraclePrice(oraclePriceList, "BTC")).toLocaleString('en-US', myCurrency)
   const priceDUSD = parseFloat(getDexPriceA(dexPriceList, "DUSD") * getDexPriceB(dexPriceList, "USDC")).toLocaleString('en-US', myCurrency)
-
-  // console.log(getDexPriceA(dexPriceList, "DUSD")*getDexPriceB(dexPriceList, "USDC"))
 
   const dStocksList = (oraclePriceList, dexPriceList, dStocks ) => {            
     let arr = []
