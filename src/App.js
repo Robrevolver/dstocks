@@ -49,8 +49,11 @@ const App = () => {
  
   useEffect(()=> {const list = async () => {              
             
-            //const chartPrices = await ocean.prices.getFeedWithInterval()
-            //console.log(chartPrices) 
+            const firstPage = await ocean.prices.getFeed('TLT', 'USD', 120)
+            // const nextPage = await ocean.paginate(firstPage)
+            const priceFeed = firstPage.map(item => [item.key, item.aggregated.amount, item.block.height, item.block.time])
+            console.log(firstPage)
+            console.log(priceFeed) 
 
             const oraclePrices = await ocean.prices.list(100)
             const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
@@ -63,7 +66,7 @@ const App = () => {
             setDexPriceList(dexPriceList)  
             setLoading(true)                               
             
-            // console.log(dexPrices)
+            console.log(oraclePrices)
             
           }
           list()
