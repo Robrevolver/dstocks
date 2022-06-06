@@ -49,24 +49,25 @@ const App = () => {
  
   useEffect(()=> {const list = async () => {              
             
-            const firstPage = await ocean.prices.getFeed('TLT', 'USD', 120)
+            // const firstPage = await ocean.prices.getFeed('TLT', 'USD', 120)
             // const nextPage = await ocean.paginate(firstPage)
-            const priceFeed = firstPage.map(item => [item.key, item.aggregated.amount, item.block.height, item.block.time])
-            console.log(firstPage)
-            console.log(priceFeed) 
+            // const priceFeed = firstPage.map(item => [item.key, item.aggregated.amount, item.block.height, item.block.time])
+            // console.log(firstPage)
+            // console.log(priceFeed) 
 
             const oraclePrices = await ocean.prices.list(100)
             const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
             setOraclePriceList(oraclePriceList)
   
-            const dexPrices = await ocean.poolpairs.list(44)
-            const dexPriceList = dexPrices.map(item => [item.tokenA.symbol, item.priceRatio.ba, 
+            const dexPrices = await ocean.poolpairs.list(45)
+            const dexPriceList = dexPrices.filter(item => item.id !== "54")
+                                          .map(item =>  [item.tokenA.symbol, item.priceRatio.ba, 
                                                         item.totalLiquidity.usd, item.apr.total, 
                                                         item.apr.commission,item.apr.reward,item.priceRatio.ab])
             setDexPriceList(dexPriceList)  
             setLoading(true)                               
             
-            console.log(oraclePrices)
+            // console.log(dexPrices)
             
           }
           list()

@@ -4,7 +4,7 @@ export const dStocks = [
         name: "Apple"
     },
 
-    {
+     {
         symbol: "AMZN",
         name: "Amazon"
     },
