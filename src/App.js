@@ -60,7 +60,7 @@ const App = () => {
             setOraclePriceList(oraclePriceList)
   
             const dexPrices = await ocean.poolpairs.list(45)
-            const dexPriceList = dexPrices.filter(item => item.id !== "54")
+            const dexPriceList = dexPrices.filter(item => item.status !== false)
                                           .map(item =>  [item.tokenA.symbol, item.priceRatio.ba, 
                                                         item.totalLiquidity.usd, item.apr.total, 
                                                         item.apr.commission,item.apr.reward,item.priceRatio.ab])
