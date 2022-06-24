@@ -76,7 +76,7 @@ export const dStocks = [
 
     {
         symbol: "TLT",
-        name:	"US Treasuries"
+        name:	"US Treas. 20Y"
     },
 
     {
@@ -172,6 +172,26 @@ export const dStocks = [
     {
         symbol: "URA",
         name:	"Uran ETF"
+    },
+
+    {
+        symbol: "XOM",
+        name:	"Exxon"
+    },
+
+    {
+        symbol: "GOVT",
+        name:	"US Treas. ETF"
+    },
+
+    {
+        symbol: "TAN",
+        name:	"Solar ETF"
+    },
+
+    {
+        symbol: "PPLT",
+        name:	"Platinum ETF"
     },
 
 ]
