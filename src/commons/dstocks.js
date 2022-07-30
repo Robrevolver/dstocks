@@ -211,7 +211,7 @@ export const dStocks = [
 
     {
         symbol: "GS",
-        name:	"Goldman Sachs"
+        name:	"Goldm. Sachs"
     },
 
 ]
