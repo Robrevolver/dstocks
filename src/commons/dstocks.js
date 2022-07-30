@@ -194,6 +194,26 @@ export const dStocks = [
         name:	"Platinum ETF"
     },
 
+    {
+        symbol: "JNJ",
+        name:	"Johnson & J."
+    },
+
+    {
+        symbol: "DAX",
+        name:	"Dax ETF"
+    },
+
+    {
+        symbol: "ADDYY",
+        name:	"Adidas"
+    },
+
+    {
+        symbol: "GS",
+        name:	"Goldman Sachs"
+    },
+
 ]
 
 export default dStocks
