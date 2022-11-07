@@ -55,11 +55,11 @@ const App = () => {
             // console.log(firstPage)
             // console.log(priceFeed) 
 
-            const oraclePrices = await ocean.prices.list(150)
+            const oraclePrices = await ocean.prices.list(160)
             const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
             setOraclePriceList(oraclePriceList)
   
-            const dexPrices = await ocean.poolpairs.list(60)
+            const dexPrices = await ocean.poolpairs.list(80)
             const dexPriceList = dexPrices.filter(item => item.status !== false)
                                           .map(item =>  [item.tokenA.symbol, item.priceRatio.ba, 
                                                         item.totalLiquidity.usd, item.apr.total, 

@@ -214,6 +214,26 @@ export const dStocks = [
         name:	"Goldm. Sachs"
     },
 
+    {
+        symbol: "UNG",
+        name:	"US Gas Fund"
+    },
+
+    {
+        symbol: "USO",
+        name:	"US Oil Fund"
+    },
+
+    {
+        symbol: "WMT",
+        name:	"Walmart"
+    },
+
+    {
+        symbol: "UL",
+        name:	"Unilever"
+    },
+
 ]
 
 export default dStocks
