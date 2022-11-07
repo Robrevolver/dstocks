@@ -47,6 +47,8 @@ const App = () => {
                                                                ratio:"", tvl: "", apr:"", commission:"", reward:""}})
   const [state, dispatch] = useReducer(reducer,[])
  
+  console.log("TEST")
+
   useEffect(()=> {const list = async () => {              
             
             // const firstPage = await ocean.prices.getFeed('TLT', 'USD', 120)
@@ -59,7 +61,9 @@ const App = () => {
             const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
             setOraclePriceList(oraclePriceList)
   
-            const dexPrices = await ocean.poolpairs.list(80)
+  console.log(oraclePriceList)
+            const dexPrices = await ocean.poolpairs.list(63)
+  console.log(dexPrices)          
             const dexPriceList = dexPrices.filter(item => item.status !== false)
                                           .map(item =>  [item.tokenA.symbol, item.priceRatio.ba, 
                                                         item.totalLiquidity.usd, item.apr.total, 
@@ -67,7 +71,7 @@ const App = () => {
             setDexPriceList(dexPriceList)  
             setLoading(true)                               
             
-            // console.log(dexPrices)
+            
             
           }
           list()
