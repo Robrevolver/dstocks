@@ -234,6 +234,26 @@ export const dStocks = [
         name:	"Unilever"
     },
 
+    {
+        symbol: "ARKX",
+        name:	"Space ETF"
+    },
+
+    {
+        symbol: "VBK",
+        name:	"Sm.Caps ETF"
+    },
+
+    {
+        symbol: "XLRE",
+        name:	"Real Est. ETF"
+    },
+
+    {
+        symbol: "XLE",
+        name:	"Energy Fund"
+    },
+
 ]
 
 export default dStocks
