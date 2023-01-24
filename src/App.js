@@ -44,6 +44,7 @@ const App = () => {
   const [sortList, setSortList] = useState(true)
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
+  const [adVisible,setAdVisible] = useState(true)
   const [popup, setPopup] = useState({visible: false, dstockPopup: {symbol: "", name: "", oraclePrice:"", dexPrice:"",
                                                                ratio:"", tvl: "", apr:"", commission:"", reward:""}})
   const [state, dispatch] = useReducer(reducer,[])
@@ -51,7 +52,6 @@ const App = () => {
   // console.log("TEST")
 
   useEffect(()=> {const list = async () => {              
-
             const oraclePrices = await ocean.prices.list(160)
             const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
             setOraclePriceList(oraclePriceList)
@@ -77,8 +77,8 @@ const App = () => {
   const priceDUSD = parseFloat(getDexPriceA(dexPriceList, "DUSD") * getDexPriceB(dexPriceList, "USDC")).toLocaleString('en-US', myCurrency)
 
   const dStocksList = (oraclePriceList, dexPriceList, dStocks ) => {            
-    let arr = []
-    dStocks.map(dStock => {let dstockObj = getDexData(dexPriceList, dStock.symbol);                            
+        let arr = []
+        dStocks.map(dStock => {let dstockObj = getDexData(dexPriceList, dStock.symbol);                            
                             return (dstockObj !== undefined ? 
                              arr.push({symbol: dStock.symbol, 
                                          name: dStock.name,
@@ -111,9 +111,13 @@ const App = () => {
           }
     
     const showPopup = (symbol, name, oraclePrice, dexPrice, ratio, tvl, apr, commission, reward) => {
-              setPopup({visible: !popup.visible, dstockPopup:{symbol,name,oraclePrice,dexPrice,ratio,tvl,apr,commission,reward }});
-          }      
-          
+          setPopup({visible: !popup.visible, dstockPopup:{symbol,name,oraclePrice,dexPrice,ratio,tvl,apr,commission,reward }});
+          }    
+
+    const showAdvert = () => {
+          setAdVisible(false)
+          }   
+
   return dexPriceList !==[] ? (   
     
     <div className = "page-container"> 
@@ -163,7 +167,7 @@ const App = () => {
             }        
           </div>
       <hr/>
-      <Advert />
+      {adVisible ? <Advert showAdvert={showAdvert}/> : null }
       <Footer />    
       {popup.visible ? <Popup showPopup={showPopup} dstock={popup.dstockPopup}/> : null} 
       

@@ -1,18 +1,42 @@
-.advert {
+.advertcontainer {
     position: fixed; 
     left: 50%;
     top: 75%;
     width: 360px;
-    height: 100px;
+    height: 90px;
     margin-left: -180px;
-    margin-top: -50px;
-    font-size: 2em;
+    margin-top: -45px;
+    font-size: 1em;
     text-align: center;
     border-color: rgb(0, 0, 0);
     border-width: 1px;
     border-style: solid;
     border-radius: 10px;
-    background: rgb(10, 140, 21);  
+    background: rgb(255, 255, 255);  
 }
+
+.advertunitrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1px;
+    margin-bottom: 5px;
+    padding-top: 1px;
+    padding-bottom: 5px
+  }
+
+.advertunitpicture {
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-right: 2px
+}
+
+.advertunittext {
+    width: 210px;
+    height: 80px;
+    padding-right: 5px;
+    font-size: 1em;
+}
+
 
   
