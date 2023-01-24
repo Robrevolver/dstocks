@@ -5,6 +5,7 @@ import { dStocks } from './commons/dstocks'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Popup from './components/Popup';
+import Advert from './components/Advert';
 import './App.css'
 
 const myCurrency = {style:'currency',currency:'USD',minimumFractionDigits:2}
@@ -57,16 +58,13 @@ const App = () => {
   
   // console.log(oraclePriceList)
             const dexPrices = await ocean.poolpairs.list(70)
-   console.log(dexPrices)          
+  // console.log(dexPrices)          
             const dexPriceList = dexPrices.filter(item => item.status !== false || item.tradeEnabled === true)
                                           .map(item =>  [item.tokenA.symbol, item.priceRatio.ba, 
                                                         item.totalLiquidity.usd, item.apr.total, 
                                                         item.apr.commission,item.apr.reward,item.priceRatio.ab])
             setDexPriceList(dexPriceList)  
-            setLoading(true)                               
-            
-            
-            
+            setLoading(true)                                                                
           }
           list()
 
@@ -165,8 +163,10 @@ const App = () => {
             }        
           </div>
       <hr/>
+      <Advert />
       <Footer />    
       {popup.visible ? <Popup showPopup={showPopup} dstock={popup.dstockPopup}/> : null} 
+      
     </div>
   ) : null;
 }

@@ -1,0 +1,18 @@
+.advert {
+    position: fixed; 
+    left: 50%;
+    top: 75%;
+    width: 360px;
+    height: 100px;
+    margin-left: -180px;
+    margin-top: -50px;
+    font-size: 2em;
+    text-align: center;
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    background: rgb(10, 140, 21);  
+}
+
+  
