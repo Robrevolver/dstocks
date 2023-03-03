@@ -44,7 +44,7 @@ const App = () => {
   const [sortList, setSortList] = useState(true)
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
-  const [adVisible,setAdVisible] = useState(true)
+  const [adVisible,setAdVisible] = useState(false)
   const [popup, setPopup] = useState({visible: false, dstockPopup: {symbol: "", name: "", oraclePrice:"", dexPrice:"",
                                                                ratio:"", tvl: "", apr:"", commission:"", reward:""}})
   const [state, dispatch] = useReducer(reducer,[])
@@ -52,12 +52,12 @@ const App = () => {
   // console.log("TEST")
 
   useEffect(()=> {const list = async () => {              
-            const oraclePrices = await ocean.prices.list(160)
+            const oraclePrices = await ocean.prices.list(170)
             const oraclePriceList = oraclePrices.map(item => [item.price.token, item.price.aggregated.amount])
             setOraclePriceList(oraclePriceList)
   
   // console.log(oraclePriceList)
-            const dexPrices = await ocean.poolpairs.list(70)
+            const dexPrices = await ocean.poolpairs.list(80)
   // console.log(dexPrices)          
             const dexPriceList = dexPrices.filter(item => item.status !== false || item.tradeEnabled === true)
                                           .map(item =>  [item.tokenA.symbol, item.priceRatio.ba, 

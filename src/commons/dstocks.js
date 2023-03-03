@@ -254,6 +254,26 @@ export const dStocks = [
         name:	"Energy Fund"
     },
 
+    {
+        symbol: "NSRGY",
+        name:	"Nestle"
+    },
+
+    {
+        symbol: "SH",
+        name:	"Short S&P ETF"
+    },
+
+    {
+        symbol: "SHEL",
+        name:	"Shell"
+    },
+
+    {
+        symbol: "BITI",
+        name:	"BTC Inv ETF"
+    },
+
 ]
 
 export default dStocks
